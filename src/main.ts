@@ -3,6 +3,7 @@ import { AppModule } from './user.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
+import * as dotenv from 'dotenv';
 
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule);
@@ -12,7 +13,7 @@ async function bootstrap() {
 		.setDescription('Endpoints for all Nutri-Digital operations')
 		.setVersion('1.0')
 		.build();
-
+	dotenv.config();
 	const document = SwaggerModule.createDocument(app, config);
 	SwaggerModule.setup('swagger', app, document);
 	app.useGlobalInterceptors(new ErrorInterceptor());

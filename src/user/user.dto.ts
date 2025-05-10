@@ -27,3 +27,15 @@ export class UserDto {
 	@ApiProperty()
 	role: string;
 }
+
+export class LoginDto {
+	@IsString()
+	@IsNotEmpty()
+	@ApiProperty()
+	user: string;
+
+	@IsString()
+	@IsNotEmpty()
+	@ApiProperty()
+	password: string;
+}

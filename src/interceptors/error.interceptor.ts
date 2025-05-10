@@ -4,6 +4,7 @@ import {
   Injectable,
   NestInterceptor,
   BadRequestException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { catchError, Observable } from 'rxjs';
 import { throwError } from 'rxjs';
@@ -14,6 +15,10 @@ export class ErrorInterceptor implements NestInterceptor {
     return next.handle().pipe(
       catchError((err) => {
         if (err instanceof BadRequestException) {
+          return throwError(() => err);
+        }
+
+        if (err instanceof UnauthorizedException) {
           return throwError(() => err);
         }
 
