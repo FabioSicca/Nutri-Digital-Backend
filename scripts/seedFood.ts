@@ -16,13 +16,13 @@ async function loadFoodData() {
 
         for (const food of foodData) {
             await db.insert(foodTable).values({
-                name: food.name.toLowerCase(),
+                name: food.name,
                 brand: food.brand,
                 serving: food.serving || '',
                 calories: food.calories || 0,
                 href: food.href,
                 external_id: food.external_id,
-                searchTerm: food.searchTerm,
+                searchTerm: food.searchTerm.toLowerCase(),
                 sodium: food.Sodium || '',
                 total_fat: food['Total Fat'] || '',
                 potassium: food.Potassium || '',
