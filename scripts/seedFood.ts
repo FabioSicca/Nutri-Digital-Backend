@@ -16,7 +16,7 @@ async function loadFoodData() {
 
         for (const food of foodData) {
             await db.insert(foodTable).values({
-                name: food.name,
+                name: food.name.toLowerCase(),
                 brand: food.brand,
                 serving: food.serving || '',
                 calories: food.calories || 0,
