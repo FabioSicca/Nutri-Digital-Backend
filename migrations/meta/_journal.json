@@ -15,6 +15,13 @@
       "when": 1746901673531,
       "tag": "0001_bumpy_synch",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1746909230813,
+      "tag": "0002_big_shriek",
+      "breakpoints": true
     }
   ]
 }
