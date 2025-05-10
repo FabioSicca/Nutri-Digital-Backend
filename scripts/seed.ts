@@ -1,5 +1,5 @@
 import { drizzle } from 'drizzle-orm/node-postgres';
-import { usersTable } from '../src/entities/user.entity';
+import { usersTable } from '../src/user/user.entity';
 import { Pool } from 'pg';
 import 'dotenv/config';
 
@@ -15,17 +15,19 @@ async function seed() {
 
   await db.insert(usersTable).values([
     {
+      user: 'admin',
       name: 'Santiago',
-      email: 'santi@fiuba.com',
+      lastname: 'Scooby',
       password: '1234',
-      role: 'paciente',
+      role: 'regular',
     },
     {
-      name: 'Alex',
-      email: 'alex@fiuba.com',
+      user: 'medic',
+      name: 'Ezequiel',
+      lastname: 'Bilardo',
       password: '1234',
-      role: 'paciente',
-    },
+      role: 'medic',
+    }
   ]);
 
   console.log('✅ Users inserted successfully.');
