@@ -18,9 +18,7 @@ export class FoodController {
 	@ApiOperation({ summary: 'Get Foods' })
 	@ApiResponse({ status: 200, description: 'Returns an array of food' })
 	async getUser(@Query('name') name: string): Promise<any> {
-		return {
-			data: await this.foodService.getFoods(name)
-		};
+		return await this.foodService.getFoods(name);
 	}
 
 }
