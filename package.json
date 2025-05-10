@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "seed": "ts-node scripts/seed.ts",
+    "seed:user": "ts-node scripts/seed.ts",
+    "seed:food": "ts-node scripts/seedFood.ts",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "prettier:check": "prettier --check \"src/**/*.ts\" \"test/**/*.ts\"",

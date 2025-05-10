@@ -2,7 +2,7 @@ import { InferSelectModel } from 'drizzle-orm';
 import { pgTable, serial, text, varchar, uniqueIndex } from 'drizzle-orm/pg-core';
 
 export const usersTable = pgTable('users', {
-    id: serial('id').primaryKey(),
+    id: serial('id').primaryKey().notNull(),
     user: varchar('user', { length: 256 }).notNull(),
     name: varchar('name', { length: 256 }).notNull(),
     lastname: varchar('lastname', { length: 256 }).notNull(),
