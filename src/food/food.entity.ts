@@ -26,8 +26,6 @@ export const foodTable = pgTable('food', {
     calcium: varchar('calcium', { length: 256 }).notNull(),
     vitamin_c: varchar('vitamin_c', { length: 256 }).notNull(),
     iron: varchar('iron', { length: 256 }).notNull(),
-}, (table) => {
-    
 });
 
 export default foodTable;
