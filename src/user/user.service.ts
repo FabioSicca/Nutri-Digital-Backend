@@ -18,10 +18,10 @@ export class UserService {
         const [newUser] = await db
             .insert(usersTable)
             .values({
-				user: userDto.user,
+				user: userDto.user.toLowerCase(),
 				lastname: userDto.lastname,
                 name: userDto.name,
-                password: userDto.password,
+                password: userDto.password.toLowerCase(),
                 role: userDto.role,
             })
             .returning();
