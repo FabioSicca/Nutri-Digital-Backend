@@ -24,10 +24,10 @@ export class ConsumedDto {
   @IsNumber()
   @IsNotEmpty()
   @ApiProperty()
-  id_user: string;
+  id_user: number;
 
   @IsNumber()
   @IsNotEmpty()
   @ApiProperty()
-  id_food: string;
+  id_food: number;
 }
