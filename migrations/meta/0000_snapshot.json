@@ -1,5 +1,5 @@
 {
-  "id": "5e4cc03d-288c-4ec3-a949-8c8cd232d0b0",
+  "id": "54a84511-ce03-4b7f-b4b7-57cf887ca1d4",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -10,7 +10,7 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "bigserial",
+          "type": "serial",
           "primaryKey": true,
           "notNull": true
         },
@@ -34,7 +34,7 @@
         },
         "calories": {
           "name": "calories",
-          "type": "bigserial",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },

@@ -1,9 +1,9 @@
 CREATE TABLE "food" (
-	"id" bigserial PRIMARY KEY NOT NULL,
+	"id" serial PRIMARY KEY NOT NULL,
 	"name" varchar(256) NOT NULL,
 	"brand" varchar(256) NOT NULL,
 	"serving" varchar(256) NOT NULL,
-	"calories" bigserial NOT NULL,
+	"calories" integer NOT NULL,
 	"href" varchar(256) NOT NULL,
 	"external_id" varchar(256) NOT NULL,
 	"searchTerm" varchar(256) NOT NULL,
