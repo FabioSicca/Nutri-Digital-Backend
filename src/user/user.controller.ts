@@ -30,7 +30,7 @@ export class UserController {
 		return await this.userService.getUser(id);
 	}
 
-	@Post('/')
+	@Post()
 	@ApiOperation({ summary: 'Create User' })
 	@ApiResponse({ status: 201, description: 'Creates a user object.' })
 	public async createUser(
