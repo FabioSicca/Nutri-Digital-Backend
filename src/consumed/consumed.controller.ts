@@ -16,10 +16,9 @@ import { ConsumedDto } from './consumed.dto';
 export class ConsumedController {
 	constructor(private readonly consumedService: ConsumedService) {}
 
-	@Post('/')
+	@Post()
     @UseGuards(JwtAuthGuard)
-	@ApiOperation({ summary: 'Add Data for a Food' })
-	@ApiResponse({ status: 201, description: 'Add Data for a Food.' })
+	@ApiOperation({ summary: 'Add consume for a client' })
 	public async addFoodConsumed(
 		@Body() consumed: ConsumedDto,
 	){

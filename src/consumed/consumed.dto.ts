@@ -2,10 +2,6 @@ import { IsString, IsInt, IsNotEmpty, IsNumber } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class ConsumedDto {
-  @IsInt()
-  @ApiProperty()
-  id: number;
-
   @IsString()
   @IsNotEmpty()
   @ApiProperty()

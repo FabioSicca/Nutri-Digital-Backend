@@ -10,7 +10,7 @@ export class FoodService {
 		const resp = await db
 			.select()
 			.from(foodTable)
-			.where(eq(foodTable.name, name.toLowerCase()));
+			.where(eq(foodTable.searchTerm, name.toLowerCase()));
 		return resp;
 	}
 }

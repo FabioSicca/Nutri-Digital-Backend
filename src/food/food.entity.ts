@@ -1,12 +1,12 @@
 import { InferSelectModel } from 'drizzle-orm';
-import { pgTable, bigserial, text, varchar, bigint, integer } from 'drizzle-orm/pg-core';
+import { pgTable, serial, text, varchar, bigint, integer } from 'drizzle-orm/pg-core';
 
 export const foodTable = pgTable('food', {
-    id: bigserial('id',{mode: 'bigint'}).primaryKey().notNull(),
+    id: serial('id').primaryKey().notNull(),
     name: varchar('name', { length: 256 }).notNull(),
     brand: varchar('brand', { length: 256 }).notNull(),
     serving: varchar('serving', { length: 256 }).notNull(),
-    calories: bigserial('calories',{mode: 'bigint'}).notNull(),
+    calories: integer('calories').notNull(),
     href: varchar('href', { length: 256 }).notNull(),
     external_id: varchar('external_id', { length: 256 }).notNull(),
     searchTerm: varchar('searchTerm', { length: 256 }).notNull(),
