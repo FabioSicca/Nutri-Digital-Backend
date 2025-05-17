@@ -35,6 +35,13 @@ CREATE TABLE "food" (
 	"iron" varchar(256) NOT NULL
 );
 --> statement-breakpoint
+CREATE TABLE "hidratate" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"id_user" integer NOT NULL,
+	"mililiters" integer NOT NULL,
+	"fecha" date NOT NULL
+);
+--> statement-breakpoint
 CREATE TABLE "users" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"user" varchar(256) NOT NULL,
@@ -46,4 +53,5 @@ CREATE TABLE "users" (
 --> statement-breakpoint
 ALTER TABLE "consumed" ADD CONSTRAINT "consumed_id_user_users_id_fk" FOREIGN KEY ("id_user") REFERENCES "public"."users"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "consumed" ADD CONSTRAINT "consumed_id_food_food_id_fk" FOREIGN KEY ("id_food") REFERENCES "public"."food"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "hidratate" ADD CONSTRAINT "hidratate_id_user_users_id_fk" FOREIGN KEY ("id_user") REFERENCES "public"."users"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 CREATE UNIQUE INDEX "user_unique" ON "users" USING btree ("user");
