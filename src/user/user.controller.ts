@@ -51,7 +51,7 @@ export class UserController {
 		if (!currentUser[0]) {
             throw new UnauthorizedException();
         }
-		const claims = { name: currentUser[0].user };
+		const claims = { id: currentUser[0].id };
 		if (!process.env.JWT_SECRET) {
 			throw new Error('JWT_SECRET is not defined in environment variables');
 		}
