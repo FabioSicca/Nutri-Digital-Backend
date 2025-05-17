@@ -8,7 +8,8 @@ import {
   timestamp,
   integer,
   bigint,
-  foreignKey
+  foreignKey,
+  date
 } from 'drizzle-orm/pg-core';
 
 export const consumedTable = pgTable('consumed', {
@@ -16,7 +17,7 @@ export const consumedTable = pgTable('consumed', {
     portion: varchar('portion', { length: 256 }).notNull(),
     unit: varchar('unit', { length: 256 }).notNull(),
     type_of_food: varchar('type_of_food', { length: 256 }).notNull(),
-    date_consumed: timestamp('fecha', { mode: 'date' }).notNull(),
+    date_consumed: date('fecha', { mode: 'date' }).notNull(),
     id_user: integer('id_user')
       .notNull()
       .references(() => usersTable.id, { onDelete: 'cascade' }),

@@ -3,7 +3,7 @@ CREATE TABLE "consumed" (
 	"portion" varchar(256) NOT NULL,
 	"unit" varchar(256) NOT NULL,
 	"type_of_food" varchar(256) NOT NULL,
-	"fecha" timestamp NOT NULL,
+	"fecha" date NOT NULL,
 	"id_user" integer NOT NULL,
 	"id_food" bigint NOT NULL
 );

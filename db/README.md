@@ -35,5 +35,13 @@ npx drizzle-kit migrate
 6. 
 
 ```bash
+npm run seed:food
+npm run seed:user
+```
+
+7. 
+
+```bash
 npx drizzle-kit studio
 ```
+
