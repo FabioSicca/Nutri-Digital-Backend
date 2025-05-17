@@ -1,0 +1,491 @@
+{
+  "id": "c6951680-acc0-46cd-98f9-a89d7fba184f",
+  "prevId": "f54802ac-e709-4e92-a3c9-e92bdcd505c2",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.consumed": {
+      "name": "consumed",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "portion": {
+          "name": "portion",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "unit": {
+          "name": "unit",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "type_of_food": {
+          "name": "type_of_food",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fecha": {
+          "name": "fecha",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id_user": {
+          "name": "id_user",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id_food": {
+          "name": "id_food",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "consumed_id_user_users_id_fk": {
+          "name": "consumed_id_user_users_id_fk",
+          "tableFrom": "consumed",
+          "tableTo": "users",
+          "columnsFrom": [
+            "id_user"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "consumed_id_food_food_id_fk": {
+          "name": "consumed_id_food_food_id_fk",
+          "tableFrom": "consumed",
+          "tableTo": "food",
+          "columnsFrom": [
+            "id_food"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.food": {
+      "name": "food",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "brand": {
+          "name": "brand",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "serving": {
+          "name": "serving",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "calories": {
+          "name": "calories",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "href": {
+          "name": "href",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "external_id": {
+          "name": "external_id",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "searchTerm": {
+          "name": "searchTerm",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sodium": {
+          "name": "sodium",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "total_fat": {
+          "name": "total_fat",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "potassium": {
+          "name": "potassium",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "saturated": {
+          "name": "saturated",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "total_carbs": {
+          "name": "total_carbs",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "polyunsaturated": {
+          "name": "polyunsaturated",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "dietary_fiber": {
+          "name": "dietary_fiber",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monounsaturated": {
+          "name": "monounsaturated",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sugars": {
+          "name": "sugars",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "trans": {
+          "name": "trans",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "protein": {
+          "name": "protein",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "cholesterol": {
+          "name": "cholesterol",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "vitamin_a": {
+          "name": "vitamin_a",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "calcium": {
+          "name": "calcium",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "vitamin_c": {
+          "name": "vitamin_c",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "iron": {
+          "name": "iron",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.hidratate": {
+      "name": "hidratate",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "id_user": {
+          "name": "id_user",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mililiters": {
+          "name": "mililiters",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fecha": {
+          "name": "fecha",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "hidratate_id_user_users_id_fk": {
+          "name": "hidratate_id_user_users_id_fk",
+          "tableFrom": "hidratate",
+          "tableTo": "users",
+          "columnsFrom": [
+            "id_user"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.micronutrient_goals": {
+      "name": "micronutrient_goals",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "id_user": {
+          "name": "id_user",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "saturated_fat": {
+          "name": "saturated_fat",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "polyunsaturated_fat": {
+          "name": "polyunsaturated_fat",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "monounsaturated_fat": {
+          "name": "monounsaturated_fat",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "trans_fat": {
+          "name": "trans_fat",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cholesterol": {
+          "name": "cholesterol",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sodium": {
+          "name": "sodium",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "potassium": {
+          "name": "potassium",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "fiber": {
+          "name": "fiber",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sugar": {
+          "name": "sugar",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "vitamin_a": {
+          "name": "vitamin_a",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "vitamin_c": {
+          "name": "vitamin_c",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "calcium": {
+          "name": "calcium",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "iron": {
+          "name": "iron",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "micronutrient_goals_id_user_users_id_fk": {
+          "name": "micronutrient_goals_id_user_users_id_fk",
+          "tableFrom": "micronutrient_goals",
+          "tableTo": "users",
+          "columnsFrom": [
+            "id_user"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.users": {
+      "name": "users",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "user": {
+          "name": "user",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "lastname": {
+          "name": "lastname",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "password": {
+          "name": "password",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "role": {
+          "name": "role",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "user_unique": {
+          "name": "user_unique",
+          "columns": [
+            {
+              "expression": "user",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

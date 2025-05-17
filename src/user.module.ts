@@ -6,12 +6,15 @@ import { FoodService } from './food/food.service';
 import { FoodController } from './food/food.controller';
 import { ConsumedController } from './consumed/consumed.controller';
 import { ConsumedService } from './consumed/consumed.service';
+import { NutrientGoalsController } from './nutrient-goals/nutrient-goals.controller';
+import { NutrientGoalsService } from './nutrient-goals/nutrient-goals.service';
 import { HidratationController } from './hidratation/hidratation.controller';
 import { HidratationService } from './hidratation/hidratation.service';
 
 @Module({
 	imports: [],
-	controllers: [UserController, FoodController, BasicController, ConsumedController, HidratationController],
-	providers: [UserService, FoodService, ConsumedService, HidratationService],
+	controllers: [UserController, FoodController, BasicController, ConsumedController, HidratationController, NutrientGoalsController],
+	providers: [UserService, FoodService, ConsumedService, HidratationService, NutrientGoalsService],
 })
+
 export class AppModule {}

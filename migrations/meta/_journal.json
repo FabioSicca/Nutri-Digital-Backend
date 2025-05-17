@@ -8,6 +8,20 @@
       "when": 1747519875598,
       "tag": "0000_stiff_black_widow",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1747520259920,
+      "tag": "0001_tense_energizer",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1747522394162,
+      "tag": "0002_light_mongoose",
+      "breakpoints": true
     }
   ]
 }
