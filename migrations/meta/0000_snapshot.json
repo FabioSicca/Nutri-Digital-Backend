@@ -1,5 +1,5 @@
 {
-  "id": "94dcd2ac-4373-4d73-b443-906013ec3cf5",
+  "id": "7a0c291f-0d39-4abb-bec2-8827cd452bea",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -108,12 +108,6 @@
           "primaryKey": false,
           "notNull": true
         },
-        "serving": {
-          "name": "serving",
-          "type": "varchar(256)",
-          "primaryKey": false,
-          "notNull": true
-        },
         "calories": {
           "name": "calories",
           "type": "integer",
@@ -126,110 +120,110 @@
           "primaryKey": false,
           "notNull": true
         },
-        "external_id": {
-          "name": "external_id",
-          "type": "varchar(256)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "searchTerm": {
-          "name": "searchTerm",
-          "type": "varchar(256)",
-          "primaryKey": false,
-          "notNull": true
-        },
         "sodium": {
           "name": "sodium",
-          "type": "varchar(256)",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
         "total_fat": {
           "name": "total_fat",
-          "type": "varchar(256)",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
         "potassium": {
           "name": "potassium",
-          "type": "varchar(256)",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
         "saturated": {
           "name": "saturated",
-          "type": "varchar(256)",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
         "total_carbs": {
           "name": "total_carbs",
-          "type": "varchar(256)",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
         "polyunsaturated": {
           "name": "polyunsaturated",
-          "type": "varchar(256)",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
         "dietary_fiber": {
           "name": "dietary_fiber",
-          "type": "varchar(256)",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
         "monounsaturated": {
           "name": "monounsaturated",
-          "type": "varchar(256)",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
         "sugars": {
           "name": "sugars",
-          "type": "varchar(256)",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
         "trans": {
           "name": "trans",
-          "type": "varchar(256)",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
         "protein": {
           "name": "protein",
-          "type": "varchar(256)",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
         "cholesterol": {
           "name": "cholesterol",
-          "type": "varchar(256)",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
         "vitamin_a": {
           "name": "vitamin_a",
-          "type": "varchar(256)",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
         "calcium": {
           "name": "calcium",
-          "type": "varchar(256)",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
         "vitamin_c": {
           "name": "vitamin_c",
-          "type": "varchar(256)",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
         "iron": {
           "name": "iron",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "restricciones": {
+          "name": "restricciones",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tipo": {
+          "name": "tipo",
           "type": "varchar(256)",
           "primaryKey": false,
           "notNull": true
@@ -277,6 +271,123 @@
         "hidratate_id_user_users_id_fk": {
           "name": "hidratate_id_user_users_id_fk",
           "tableFrom": "hidratate",
+          "tableTo": "users",
+          "columnsFrom": [
+            "id_user"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.micronutrient_goals": {
+      "name": "micronutrient_goals",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "id_user": {
+          "name": "id_user",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "saturated_fat": {
+          "name": "saturated_fat",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "polyunsaturated_fat": {
+          "name": "polyunsaturated_fat",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "monounsaturated_fat": {
+          "name": "monounsaturated_fat",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "trans_fat": {
+          "name": "trans_fat",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cholesterol": {
+          "name": "cholesterol",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sodium": {
+          "name": "sodium",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "potassium": {
+          "name": "potassium",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "fiber": {
+          "name": "fiber",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sugar": {
+          "name": "sugar",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "vitamin_a": {
+          "name": "vitamin_a",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "vitamin_c": {
+          "name": "vitamin_c",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "calcium": {
+          "name": "calcium",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "iron": {
+          "name": "iron",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "micronutrient_goals_id_user_users_id_fk": {
+          "name": "micronutrient_goals_id_user_users_id_fk",
+          "tableFrom": "micronutrient_goals",
           "tableTo": "users",
           "columnsFrom": [
             "id_user"

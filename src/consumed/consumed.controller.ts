@@ -20,6 +20,7 @@ export class ConsumedController {
 
 	@Post()
 	@ApiOperation({ summary: 'Add consume for a client' })
+	@UseGuards(JwtAuthGuard)
 	public async addFoodConsumed(
 		@Body() consumed: ConsumedDto,
 	){
@@ -28,6 +29,7 @@ export class ConsumedController {
 
 	@Delete()
 	@ApiOperation({ summary: 'Delete a food consumed by an user' })
+	@UseGuards(JwtAuthGuard)
 	public async deleteFoodConsumed(
 		@Body() body: DeleteConsumedDto,
 	){
