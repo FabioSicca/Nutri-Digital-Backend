@@ -15,6 +15,13 @@
       "when": 1747525345454,
       "tag": "0001_aberrant_colossus",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1747539746725,
+      "tag": "0002_fuzzy_vivisector",
+      "breakpoints": true
     }
   ]
 }
