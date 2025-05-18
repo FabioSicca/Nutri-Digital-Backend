@@ -29,6 +29,6 @@ export class ProfessionalService {
       name: prof.name,
       specialty: prof.specialty,
       rate: prof.total_reviews > 0 ? prof.total_score / prof.total_reviews : 0,
-    }));
+    })).sort((a, b) => b.rate - a.rate);
   }
 }
