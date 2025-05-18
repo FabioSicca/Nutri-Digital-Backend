@@ -8,5 +8,5 @@ export class HidratationCreateDto {
 
 	@IsOptional()
 	@ApiProperty()
-	date: Date;
+	date_consumed: Date;
 }
