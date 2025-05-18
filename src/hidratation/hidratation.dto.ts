@@ -1,4 +1,4 @@
-import { IsString, IsInt, IsNotEmpty } from 'class-validator';
+import { IsString, IsOptional, IsNotEmpty } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class HidratationCreateDto {
@@ -6,7 +6,7 @@ export class HidratationCreateDto {
 	@ApiProperty()
 	mililiters: number;
 
-	@IsNotEmpty()
+	@IsOptional()
 	@ApiProperty()
 	date: Date;
 }

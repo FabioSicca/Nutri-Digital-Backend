@@ -30,6 +30,9 @@ export class HidratationService {
 	}
 
 	private async insertConsumedHidratation(id: number, mililiters: number, date: Date) {
+		if(date === undefined || date === null) {
+			date = new Date();
+		}
 		const [newConsumed] = await db
 			.insert(hidratationTable)
 			.values({
