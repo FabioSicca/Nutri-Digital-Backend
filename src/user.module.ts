@@ -10,11 +10,13 @@ import { NutrientGoalsController } from './nutrient-goals/nutrient-goals.control
 import { NutrientGoalsService } from './nutrient-goals/nutrient-goals.service';
 import { HidratationController } from './hidratation/hidratation.controller';
 import { HidratationService } from './hidratation/hidratation.service';
+import { ProfessionalController } from './professional/professional.controller';
+import { ProfessionalService } from './professional/professional.service';
 
 @Module({
 	imports: [],
-	controllers: [UserController, FoodController, BasicController, ConsumedController, HidratationController, NutrientGoalsController],
-	providers: [UserService, FoodService, ConsumedService, HidratationService, NutrientGoalsService],
+	controllers: [UserController, FoodController, BasicController, ConsumedController, HidratationController, NutrientGoalsController, ProfessionalController],
+	providers: [UserService, FoodService, ConsumedService, HidratationService, NutrientGoalsService, ProfessionalService],
 })
 
 export class AppModule {}
