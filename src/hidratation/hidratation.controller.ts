@@ -52,14 +52,11 @@ export class HidratationController {
 	@UseGuards(JwtAuthGuard)
 	@ApiOperation({ summary: 'Get hidrations for a client' })
 	public async DeleteHidratationConsumed(
-		@Query('date') date: string,
+		@Query('id') id: number,
 		@Headers() headers: Record<string, string>,
 	) {
-		let userId = GetUserId(headers);
-		const parsedDate = new Date(date);
 		return await this.consumedService.deleteHidratationConsumed(
-			userId,
-			parsedDate,
+			id
 		);
 	}
 }

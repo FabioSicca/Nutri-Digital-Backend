@@ -59,13 +59,12 @@ export class HidratationService {
 		return resp;
 	}
 
-	async deleteHidratationConsumed(id: number, date: Date) {
+	async deleteHidratationConsumed(hidratation_id: number) {
 		await db
 			.delete(hidratationTable)
 			.where(
 				and(
-					eq(hidratationTable.date_consumed, date),
-					eq(hidratationTable.id_user, id),
+					eq(hidratationTable.id, hidratation_id),
 				),
 			);
 
