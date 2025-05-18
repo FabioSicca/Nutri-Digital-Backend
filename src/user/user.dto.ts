@@ -7,12 +7,12 @@ export class UserDto {
 	@ApiProperty()
 	user: string;
 
-    @IsString()
+	@IsString()
 	@IsNotEmpty()
 	@ApiProperty()
 	name: string;
 
-    @IsString()
+	@IsString()
 	@IsNotEmpty()
 	@ApiProperty()
 	lastname: string;

@@ -4,7 +4,6 @@ import {
 	Get,
 	Query,
 	Body,
-	Param,
 	Request,
 	Post,
 	Patch,
@@ -25,7 +24,10 @@ export class NutrientGoalsController {
 	@Get('macro')
 	@UseGuards(JwtAuthGuard)
 	@ApiOperation({ summary: 'Get Nutrition Goals' })
-	@ApiResponse({ status: 200, description: 'Returns an array of nutrition goals' })
+	@ApiResponse({
+		status: 200,
+		description: 'Returns an array of nutrition goals',
+	})
 	async getNutritionGoals(@Query('userId') userId: number): Promise<any> {
 		return await this.nutrientGoalsService.getNutritionGoals(userId);
 	}
@@ -33,7 +35,10 @@ export class NutrientGoalsController {
 	@Get('micro')
 	@UseGuards(JwtAuthGuard)
 	@ApiOperation({ summary: 'Get Nutrient Goals' })
-	@ApiResponse({ status: 200, description: 'Returns an array of nutrient goals' })
+	@ApiResponse({
+		status: 200,
+		description: 'Returns an array of nutrient goals',
+	})
 	async getNutrientGoals(@Query('userId') userId: number): Promise<any> {
 		return await this.nutrientGoalsService.getNutrientGoals(userId);
 	}
@@ -41,32 +46,46 @@ export class NutrientGoalsController {
 	@Post('micro/add')
 	@UseGuards(JwtAuthGuard)
 	@ApiOperation({ summary: 'Add Nutrient Goals' })
-	@ApiResponse({ status: 201, description: 'Creates a nutrient goal object.' })
+	@ApiResponse({
+		status: 201,
+		description: 'Creates a nutrient goal object.',
+	})
 	public async addNutrientGoals(
 		@Body() nutrientGoals: NutrientGoalsDto,
 		@Request() req: Request,
 	) {
 		const userIdFromToken = GetUserId(req.headers);
-    return await this.nutrientGoalsService.addNutrientGoals(userIdFromToken, nutrientGoals);
+		return await this.nutrientGoalsService.addNutrientGoals(
+			userIdFromToken,
+			nutrientGoals,
+		);
 	}
 
 	@Post('macro/add')
 	@UseGuards(JwtAuthGuard)
 	@ApiOperation({ summary: 'Add Nutrition Goals' })
-	@ApiResponse({ status: 201, description: 'Creates a nutrition goal object.' })
+	@ApiResponse({
+		status: 201,
+		description: 'Creates a nutrition goal object.',
+	})
 	public async addNutritionGoals(
 		@Body() nutritionGoals: NutritionGoalsDto,
 		@Request() req: Request,
 	) {
 		const userIdFromToken = GetUserId(req.headers);
-    return await this.nutrientGoalsService.addNutritionGoals(userIdFromToken, nutritionGoals);
+		return await this.nutrientGoalsService.addNutritionGoals(
+			userIdFromToken,
+			nutritionGoals,
+		);
 	}
-
 
 	@Patch('micro/update')
 	@UseGuards(JwtAuthGuard)
 	@ApiOperation({ summary: 'Update Nutrient Goals' })
-	@ApiResponse({ status: 200, description: 'Updates a nutrient goal object.' })
+	@ApiResponse({
+		status: 200,
+		description: 'Updates a nutrient goal object.',
+	})
 	public async updateNutrientGoals(
 		@Body() nutrientGoals: NutrientGoalsDto,
 		@Request() req: Request,
@@ -75,13 +94,19 @@ export class NutrientGoalsController {
 		if (!user_id) {
 			throw new BadRequestException('User ID is required');
 		}
-		return await this.nutrientGoalsService.updateNutrientGoals(user_id, nutrientGoals);
+		return await this.nutrientGoalsService.updateNutrientGoals(
+			user_id,
+			nutrientGoals,
+		);
 	}
 
 	@Patch('macro/update')
 	@UseGuards(JwtAuthGuard)
 	@ApiOperation({ summary: 'Update Nutrition Goals' })
-	@ApiResponse({ status: 200, description: 'Updates a nutrition goal object.' })
+	@ApiResponse({
+		status: 200,
+		description: 'Updates a nutrition goal object.',
+	})
 	public async updateNutritionGoals(
 		@Body() nutritionGoals: NutritionGoalsDto,
 		@Request() req: Request,
@@ -90,6 +115,9 @@ export class NutrientGoalsController {
 		if (!user_id) {
 			throw new BadRequestException('User ID is required');
 		}
-		return await this.nutrientGoalsService.updateNutritionGoals(user_id, nutritionGoals);
+		return await this.nutrientGoalsService.updateNutritionGoals(
+			user_id,
+			nutritionGoals,
+		);
 	}
 }

@@ -15,8 +15,22 @@ import { ProfessionalService } from './professional/professional.service';
 
 @Module({
 	imports: [],
-	controllers: [UserController, FoodController, BasicController, ConsumedController, HidratationController, NutrientGoalsController, ProfessionalController],
-	providers: [UserService, FoodService, ConsumedService, HidratationService, NutrientGoalsService, ProfessionalService],
+	controllers: [
+		UserController,
+		FoodController,
+		BasicController,
+		ConsumedController,
+		HidratationController,
+		NutrientGoalsController,
+		ProfessionalController,
+	],
+	providers: [
+		UserService,
+		FoodService,
+		ConsumedService,
+		HidratationService,
+		NutrientGoalsService,
+		ProfessionalService,
+	],
 })
-
 export class AppModule {}

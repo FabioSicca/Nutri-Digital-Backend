@@ -15,18 +15,18 @@ export class UserService {
 	}
 
 	async createUser(userDto: UserDto): Promise<User> {
-        const [newUser] = await db
-            .insert(usersTable)
-            .values({
+		const [newUser] = await db
+			.insert(usersTable)
+			.values({
 				user: userDto.user.toLowerCase(),
 				lastname: userDto.lastname,
-                name: userDto.name,
-                password: userDto.password.toLowerCase(),
-                role: userDto.role,
-            })
-            .returning();
-        return newUser;
-    }
+				name: userDto.name,
+				password: userDto.password.toLowerCase(),
+				role: userDto.role,
+			})
+			.returning();
+		return newUser;
+	}
 
 	async findUserByEmailAndPassword(user: string, password: string) {
 		const userdb = await db
@@ -35,10 +35,10 @@ export class UserService {
 			.where(
 				and(
 					eq(usersTable.user, user),
-					eq(usersTable.password, password)
-				)
-			)
-	
+					eq(usersTable.password, password),
+				),
+			);
+
 		return userdb;
 	}
 }

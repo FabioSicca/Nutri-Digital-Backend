@@ -1,30 +1,37 @@
-import { Injectable, CanActivate, ExecutionContext, UnauthorizedException } from '@nestjs/common';
+import {
+	Injectable,
+	CanActivate,
+	ExecutionContext,
+	UnauthorizedException,
+} from '@nestjs/common';
 import * as jwt from 'jsonwebtoken';
 
 @Injectable()
 export class JwtAuthGuard implements CanActivate {
-    async canActivate(context: ExecutionContext): Promise<boolean> {
-        const request = context.switchToHttp().getRequest();
-        const authHeader = request.headers['authorization'];
+	async canActivate(context: ExecutionContext): Promise<boolean> {
+		const request = context.switchToHttp().getRequest();
+		const authHeader = request.headers['authorization'];
 
-        if (!authHeader) {
-            throw new UnauthorizedException('Authorization header is missing');
-        }
+		if (!authHeader) {
+			throw new UnauthorizedException('Authorization header is missing');
+		}
 
-        const token = authHeader.split(' ')[1];
-        if (!token) {
-            throw new UnauthorizedException('Token is missing');
-        }
+		const token = authHeader.split(' ')[1];
+		if (!token) {
+			throw new UnauthorizedException('Token is missing');
+		}
 
-        try {
-            if (!process.env.JWT_SECRET) {
-                throw new Error('JWT_SECRET is not defined in environment variables');
-            }
-            const decoded = jwt.verify(token, process.env.JWT_SECRET);
-            request.user = decoded;
-            return true;
-        } catch (err) {
-            throw new UnauthorizedException('Invalid or expired token');
-        }
-    }
+		try {
+			if (!process.env.JWT_SECRET) {
+				throw new Error(
+					'JWT_SECRET is not defined in environment variables',
+				);
+			}
+			const decoded = jwt.verify(token, process.env.JWT_SECRET);
+			request.user = decoded;
+			return true;
+		} catch (err) {
+			throw new UnauthorizedException('Invalid or expired token');
+		}
+	}
 }

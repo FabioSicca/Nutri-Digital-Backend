@@ -19,7 +19,10 @@ async function bootstrap() {
 	dotenv.config();
 	const document = SwaggerModule.createDocument(app, config);
 	SwaggerModule.setup('swagger', app, document);
-	app.useGlobalInterceptors(new ErrorInterceptor(), new ResponseInterceptor());
+	app.useGlobalInterceptors(
+		new ErrorInterceptor(),
+		new ResponseInterceptor(),
+	);
 	await app.listen(3000);
 }
 bootstrap();

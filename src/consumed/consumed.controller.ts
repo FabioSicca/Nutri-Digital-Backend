@@ -3,8 +3,8 @@ import {
 	UseGuards,
 	Get,
 	Query,
-    Post,
-    Body,
+	Post,
+	Body,
 	Delete,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
@@ -21,19 +21,14 @@ export class ConsumedController {
 	@Post()
 	@ApiOperation({ summary: 'Add consume for a client' })
 	@UseGuards(JwtAuthGuard)
-	public async addFoodConsumed(
-		@Body() consumed: ConsumedDto,
-	){
+	public async addFoodConsumed(@Body() consumed: ConsumedDto) {
 		return await this.consumedService.addFoodConsumed(consumed);
 	}
 
 	@Delete()
 	@ApiOperation({ summary: 'Delete a food consumed by an user' })
 	@UseGuards(JwtAuthGuard)
-	public async deleteFoodConsumed(
-		@Body() body: DeleteConsumedDto,
-	){
+	public async deleteFoodConsumed(@Body() body: DeleteConsumedDto) {
 		return await this.consumedService.deleteFoodConsumed(body);
 	}
-
 }
