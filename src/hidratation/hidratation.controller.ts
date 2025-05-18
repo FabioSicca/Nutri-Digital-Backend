@@ -30,6 +30,7 @@ export class HidratationController {
 		return await this.consumedService.addHidratationConsumed(
 			userId,
 			req.mililiters,
+			req.date,
 		);
 	}
 

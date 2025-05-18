@@ -14,11 +14,11 @@ export class HidratationService {
 		return resp;
 	}
 
-	async addHidratationConsumed(id: number, mililiters: number) {
+	async addHidratationConsumed(id: number, mililiters: number, date: Date) {
 		const user = await this.findUserById(id);
 		if (!user) throw new Error('User not found');
 
-		return await this.insertConsumedHidratation(id, mililiters);
+		return await this.insertConsumedHidratation(id, mililiters, date);
 	}
 
 	private async findUserById(id: number) {
@@ -29,17 +29,16 @@ export class HidratationService {
 		return user;
 	}
 
-	private async insertConsumedHidratation(id: number, mililiters: number) {
-		const today = new Date();
+	private async insertConsumedHidratation(id: number, mililiters: number, date: Date) {
 		const [newConsumed] = await db
 			.insert(hidratationTable)
 			.values({
 				id_user: id,
 				mililiters: mililiters,
 				date_consumed: new Date(
-					today.getFullYear(),
-					today.getMonth(),
-					today.getDate(),
+					date.getFullYear(),
+					date.getMonth(),
+					date.getDate(),
 				),
 			})
 			.returning();

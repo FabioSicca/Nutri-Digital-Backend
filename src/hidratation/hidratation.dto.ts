@@ -5,4 +5,8 @@ export class HidratationCreateDto {
 	@IsNotEmpty()
 	@ApiProperty()
 	mililiters: number;
+
+	@IsNotEmpty()
+	@ApiProperty()
+	date: Date;
 }
