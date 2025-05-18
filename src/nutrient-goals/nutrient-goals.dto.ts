@@ -24,7 +24,7 @@ export class NutrientGoalsDto {
 	@IsNumber()
 	@Min(0)
 	@ApiProperty()
-	trans_fat?: number;
+	trans?: number;
 
 	@IsOptional()
 	@IsNumber()

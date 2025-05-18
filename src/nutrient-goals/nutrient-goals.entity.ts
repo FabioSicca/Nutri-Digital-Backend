@@ -10,7 +10,7 @@ export const micronutrientGoalsTable = pgTable('micronutrient_goals', {
 	saturated_fat: real('saturated_fat'), // gramos por día
 	polyunsaturated_fat: real('polyunsaturated_fat'),
 	monounsaturated_fat: real('monounsaturated_fat'),
-	trans_fat: real('trans_fat'),
+	trans: real('trans'),
 	cholesterol: real('cholesterol'), // mg por día
 	sodium: real('sodium'), // mg por día
 	potassium: real('potassium'), // mg por día

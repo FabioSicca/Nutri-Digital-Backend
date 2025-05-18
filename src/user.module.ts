@@ -12,6 +12,7 @@ import { HidratationController } from './hidratation/hidratation.controller';
 import { HidratationService } from './hidratation/hidratation.service';
 import { ProfessionalController } from './professional/professional.controller';
 import { ProfessionalService } from './professional/professional.service';
+import { PorgressPanelController } from './progress-panel/progress.controller';
 
 @Module({
 	imports: [],
@@ -23,6 +24,7 @@ import { ProfessionalService } from './professional/professional.service';
 		HidratationController,
 		NutrientGoalsController,
 		ProfessionalController,
+		PorgressPanelController
 	],
 	providers: [
 		UserService,

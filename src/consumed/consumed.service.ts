@@ -6,6 +6,8 @@ import { ConsumedDto } from './dto/consumed.dto';
 import foodTable from '@/food/food.entity';
 import usersTable from '@/user/user.entity';
 import { DeleteConsumedDto } from './dto/delete.consumed.dto';
+import { sql } from 'drizzle-orm'; // Asegúrate de importar esto si usas funciones agregadas
+
 
 @Injectable()
 export class ConsumedService {
@@ -77,5 +79,65 @@ export class ConsumedService {
 			.returning();
 
 		return newConsumed;
+	}
+
+	async getFoodConsumedToday(userId: number) {
+		const today = new Date();
+		const dateOnly = new Date(
+			today.getFullYear(),
+			today.getMonth(),
+			today.getDate(),
+		);
+
+		const consumed = await db
+			.select()
+			.from(consumedTable)
+			.where(
+				and(
+					eq(consumedTable.id_user, userId),
+					eq(consumedTable.date_consumed, dateOnly),
+				),
+			);
+
+		return consumed;
+	}
+
+
+async getNutrientsConsumedToday(userId: number) {
+	const today = new Date();
+  const dateOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+  const [result] = await db
+    .select({
+      calories: sql<number>`SUM(${foodTable.calories})`,
+      total_fat: sql<number>`SUM(${foodTable.total_fat})`,
+      total_carbs: sql<number>`SUM(${foodTable.total_carbs})`,
+      protein: sql<number>`SUM(${foodTable.protein})`,
+      saturated_fat: sql<number>`SUM(${foodTable.saturated})`,
+      polyunsaturated_fat: sql<number>`SUM(${foodTable.polyunsaturated})`,
+      monounsaturated_fat: sql<number>`SUM(${foodTable.monounsaturated})`,
+      trans: sql<number>`SUM(${foodTable.trans})`,
+      cholesterol: sql<number>`SUM(${foodTable.cholesterol})`,
+      sodium: sql<number>`SUM(${foodTable.sodium})`,
+      potassium: sql<number>`SUM(${foodTable.potassium})`,
+      fiber: sql<number>`SUM(${foodTable.dietary_fiber})`,
+      sugar: sql<number>`SUM(${foodTable.sugars})`,
+      vitamin_a: sql<number>`SUM(${foodTable.vitamin_a})`,
+      vitamin_c: sql<number>`SUM(${foodTable.vitamin_c})`,
+      calcium: sql<number>`SUM(${foodTable.calcium})`,
+      iron: sql<number>`SUM(${foodTable.iron})`,
+    })
+    .from(consumedTable)
+    .innerJoin(foodTable, eq(consumedTable.id_food, foodTable.id))
+    .where(
+      and(
+        eq(consumedTable.id_user, userId),
+        eq(consumedTable.date_consumed, dateOnly),
+      )
+    );
+
+  return Object.fromEntries(
+    Object.entries(result ?? {}).map(([k, v]) => [k, v ?? 0])
+  );
 	}
 }

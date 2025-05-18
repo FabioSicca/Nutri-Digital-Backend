@@ -1,0 +1,1 @@
+ALTER TABLE "micronutrient_goals" RENAME COLUMN "trans_fat" TO "trans";

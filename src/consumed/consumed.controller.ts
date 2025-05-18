@@ -31,4 +31,13 @@ export class ConsumedController {
 	public async deleteFoodConsumed(@Body() body: DeleteConsumedDto) {
 		return await this.consumedService.deleteFoodConsumed(body);
 	}
+
+	/*
+	@Get()
+	@ApiOperation({ summary: 'Get consumed food for a client' })
+	@UseGuards(JwtAuthGuard)
+	public async getFoodConsumed(@Query('userId') userId: number) {
+		return await this.consumedService.getFoodConsumedToday(userId);
+	}
+	*/
 }
