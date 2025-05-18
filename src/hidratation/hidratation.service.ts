@@ -40,11 +40,7 @@ export class HidratationService {
 			.values({
 				id_user: id,
 				mililiters: mililiters,
-				date_consumed: new Date(
-					date.getFullYear(),
-					date.getMonth(),
-					date.getDate(),
-				),
+				date_consumed: new Date(date.toISOString()),
 			})
 			.returning();
 		return newConsumed;
