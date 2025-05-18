@@ -60,11 +60,7 @@ export class ConsumedService {
 		foodId: number,
 	): Promise<Consumed> {
 		const today = new Date();
-		const dateOnly = new Date(
-			today.getFullYear(),
-			today.getMonth(),
-			today.getDate(),
-		);
+		const dateOnly = new Date(today.toISOString());
 
 		const [newConsumed] = await db
 			.insert(consumedTable)
