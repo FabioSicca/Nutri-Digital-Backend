@@ -8,7 +8,7 @@ import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { ProfessionalService } from './professional.service';
 
-@ApiTags('Food')
+@ApiTags('Professional')
 @Controller('professional')
 export class ProfessionalController {
 	constructor(private readonly professionalService: ProfessionalService) {}
