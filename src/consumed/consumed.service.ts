@@ -99,9 +99,8 @@ export class ConsumedService {
 	}
 
 
-async getNutrientsConsumedToday(userId: number) {
-	const today = new Date();
-  const dateOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+async getNutrientsConsumedByDate(userId: number, date: Date) {
+	const dateOnly = new Date(date.getFullYear(), date.getMonth(), date.getDate());
 
   const [result] = await db
     .select({

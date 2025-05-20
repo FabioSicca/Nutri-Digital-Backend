@@ -29,9 +29,27 @@ export class PorgressPanelController {
 		status: 200,
 		description: 'Returns an object with consumed food and goals',
 	  })
-    async getProgressPanel(@Request() req: Request,): Promise<any> {
-      let userId = GetUserId(req.headers);
-      const consumedRaw = await this.consumedService.getNutrientsConsumedToday(userId);
+    async getProgressPanel(@Request() req: Request, @Query('date') date?: string
+): Promise<any> {
+      const userId = GetUserId(req.headers);
+
+      let targetDate: Date;
+      if (date) {
+        const [year, month, day] = date.split('-').map(Number);
+        if (!year || !month || !day) {
+          throw new BadRequestException('Invalid date format. Use YYYY-MM-DD.');
+        }
+        targetDate = new Date(year, month - 1, day); // mes es 0-based
+      } else {
+        const today = new Date();
+        targetDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      }
+      
+      console.log('targetDate:', targetDate);
+      console.log('Hora local:', new Date().toString());
+      console.log('Hora UTC:', new Date().toISOString());
+      
+      const consumedRaw = await this.consumedService.getNutrientsConsumedByDate(userId, targetDate);
       const nutrientGoalsArr = await this.nutrientGoalsService.getNutrientGoals(userId);
       const nutritionGoalsArr = await this.nutrientGoalsService.getNutritionGoals(userId);
       
