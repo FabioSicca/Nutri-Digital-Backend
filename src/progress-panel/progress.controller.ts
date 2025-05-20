@@ -45,10 +45,6 @@ export class PorgressPanelController {
         targetDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
       }
       
-      console.log('targetDate:', targetDate);
-      console.log('Hora local:', new Date().toString());
-      console.log('Hora UTC:', new Date().toISOString());
-      
       const consumedRaw = await this.consumedService.getNutrientsConsumedByDate(userId, targetDate);
       const nutrientGoalsArr = await this.nutrientGoalsService.getNutrientGoals(userId);
       const nutritionGoalsArr = await this.nutrientGoalsService.getNutritionGoals(userId);
