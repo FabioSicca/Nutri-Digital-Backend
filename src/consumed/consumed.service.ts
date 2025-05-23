@@ -86,6 +86,7 @@ export class ConsumedService {
 
 		const data = consumed.map(row => ({
 			id: row.consumed.id,
+			name: row.food.name,
 			calories: row.food.calories * Number(row.consumed.unit),
 			total_carbs: row.food.total_carbs * Number(row.consumed.unit),
 			total_fat: row.food.total_fat * Number(row.consumed.unit),
