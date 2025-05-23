@@ -16,7 +16,7 @@ import { DeleteConsumedDto } from './dto/delete.consumed.dto';
 @ApiTags('Consumed')
 @Controller('consumed')
 export class ConsumedController {
-	constructor(private readonly consumedService: ConsumedService) {}
+	constructor(private readonly consumedService: ConsumedService) { }
 
 	@Post()
 	@ApiOperation({ summary: 'Add consume for a client' })
@@ -32,12 +32,17 @@ export class ConsumedController {
 		return await this.consumedService.deleteFoodConsumed(body);
 	}
 
-	/*
 	@Get()
 	@ApiOperation({ summary: 'Get consumed food for a client' })
 	@UseGuards(JwtAuthGuard)
-	public async getFoodConsumed(@Query('userId') userId: number) {
-		return await this.consumedService.getFoodConsumedToday(userId);
+	public async getFoodConsumed(@Query('userId') userId: number, @Query('date') date: string) {
+		let day;
+		if (date === undefined || date === null) {
+			day = new Date();
+
+		} else {
+			day = new Date(date);
+		}
+		return await this.consumedService.getFoodConsumedToday(userId, day);
 	}
-	*/
 }
