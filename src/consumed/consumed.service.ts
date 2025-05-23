@@ -21,20 +21,10 @@ export class ConsumedService {
 		return await this.insertConsumedFood(consumedDto, user.id, food.id);
 	}
 
-	async deleteFoodConsumed(body: DeleteConsumedDto) {
-		const { id_user, id_food, date_consumed } = body;
-		const dateOnly = new Date(date_consumed);
-
+	async deleteFoodConsumed(id: number) {
 		const result = await db
 			.delete(consumedTable)
-			.where(
-				and(
-					eq(consumedTable.id_user, id_user),
-					eq(consumedTable.id_food, id_food),
-					eq(consumedTable.date_consumed, dateOnly),
-				),
-			);
-
+			.where(eq(consumedTable.id, id));
 		if (result.rowCount === 0) throw new Error('No records deleted');
 	}
 
@@ -95,7 +85,7 @@ export class ConsumedService {
 			);
 
 		const data = consumed.map(row => ({
-        	id: row.consumed.id,
+			id: row.consumed.id,
 			calories: row.food.calories * Number(row.consumed.unit),
 			total_carbs: row.food.total_carbs * Number(row.consumed.unit),
 			total_fat: row.food.total_fat * Number(row.consumed.unit),
@@ -103,7 +93,7 @@ export class ConsumedService {
 			sodium: row.food.sodium * Number(row.consumed.unit),
 			sugars: row.food.sugars * Number(row.consumed.unit),
 			type_of_food: row.consumed.type_of_food
-    	}));
+		}));
 
 		return data;
 	}

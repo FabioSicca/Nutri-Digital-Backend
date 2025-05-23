@@ -12,6 +12,7 @@ import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { ConsumedService } from './consumed.service';
 import { ConsumedDto } from './dto/consumed.dto';
 import { DeleteConsumedDto } from './dto/delete.consumed.dto';
+import { GetDay } from '../util/utils';
 
 @ApiTags('Consumed')
 @Controller('consumed')
@@ -28,21 +29,15 @@ export class ConsumedController {
 	@Delete()
 	@ApiOperation({ summary: 'Delete a food consumed by an user' })
 	@UseGuards(JwtAuthGuard)
-	public async deleteFoodConsumed(@Body() body: DeleteConsumedDto) {
-		return await this.consumedService.deleteFoodConsumed(body);
+	public async deleteFoodConsumed(@Query('id') id: number) {
+		return await this.consumedService.deleteFoodConsumed(id);
 	}
 
 	@Get()
 	@ApiOperation({ summary: 'Get consumed food for a client' })
 	@UseGuards(JwtAuthGuard)
 	public async getFoodConsumed(@Query('userId') userId: number, @Query('date') date: string) {
-		let day;
-		if (date === undefined || date === null) {
-			day = new Date();
-
-		} else {
-			day = new Date(date);
-		}
+		let day = GetDay(date);
 		return await this.consumedService.getFoodConsumedToday(userId, day);
 	}
 }

@@ -33,3 +33,12 @@ export function GetUserId(headers: any): number {
 	}
 	return userId;
 }
+
+export function GetDay(date: string) {
+	if (date === undefined || date === null) {
+		return new Date();
+
+	} else {
+		return new Date(date);
+	}
+}
