@@ -80,9 +80,8 @@ export class RequestService {
         .where(eq(requestTable.id, id))
         .returning();
 
-        //ToDo: Una vez se aprobo la solicitud, habria que agregar el la tabla de usuarios
-        // alguna refenrecia al professional que aprobo la solicitud y
-        // Generar alguna tabla pacientes donde el professional puede ver sus pacientes
+        //ToDo: Una vez se aprobo la solicitud, habria que agregar una tabla pacientes
+        // donde se relaciona id professional con distintos usuarios
 
         return updatedRequest;
     }
