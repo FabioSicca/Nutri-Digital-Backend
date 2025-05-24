@@ -11,7 +11,6 @@ import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { ConsumedService } from './consumed.service';
 import { ConsumedDto } from './dto/consumed.dto';
-import { DeleteConsumedDto } from './dto/delete.consumed.dto';
 import { GetDay } from '../util/utils';
 
 @ApiTags('Consumed')
