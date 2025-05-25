@@ -42,3 +42,19 @@ export function GetDay(date: string) {
 		return new Date(date);
 	}
 }
+
+export async function GetDistance(origin: string, destination: string): Promise<number> {
+    try {
+        const axios = require('axios');
+        const encodedOrigin = encodeURIComponent(origin);
+        const encodedDestination = encodeURIComponent(destination);
+        const url = `https://api-v2.distancematrix.ai/maps/api/distancematrix/json?origins=${encodedOrigin}&destinations=${encodedDestination}&key=${process.env.API_DISTANCEMATRIX}`;
+
+        const response = await axios.get(url);
+        const data = response.data;
+        return data.rows[0].elements[0].distance.value;
+    } catch (error) {
+        console.error(error);
+        return 0;
+    }
+}

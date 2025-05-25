@@ -43,6 +43,13 @@
       "when": 1748182295964,
       "tag": "0005_lowly_multiple_man",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1748189318166,
+      "tag": "0006_skinny_amphibian",
+      "breakpoints": true
     }
   ]
 }
