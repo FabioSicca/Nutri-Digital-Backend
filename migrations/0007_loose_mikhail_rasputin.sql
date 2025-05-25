@@ -1,0 +1,1 @@
+ALTER TABLE "professional" ADD CONSTRAINT "professional_id_users_id_fk" FOREIGN KEY ("id") REFERENCES "public"."users"("id") ON DELETE no action ON UPDATE no action;
