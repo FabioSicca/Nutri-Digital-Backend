@@ -16,7 +16,7 @@ export class PatientService {
             .where(eq(patientTable.id_user, id))
             .innerJoin(
                 professionalTable,
-                eq(professionalTable.id, requestTable.id_professional),
+                eq(professionalTable.id, patientTable.id_professional),
             );
 
         const data = row.map(row => ({
