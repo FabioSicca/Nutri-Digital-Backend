@@ -35,7 +35,7 @@ export class RequestService {
 
     async getUserRequest(id: number) {
 
-        await db
+        const row = await db
             .select()
             .from(requestTable)
             .where(
@@ -44,12 +44,17 @@ export class RequestService {
             )
             .innerJoin(
                 professionalTable,
-                eq(professionalTable.id, requestTable.id_user),
+                eq(professionalTable.id, requestTable.id_professional),
             );
 
-        return requestTable.id ? [{
-            id: requestTable.id
-        }] : [];
+
+        const data = row.map(row => ({
+            id: row.request.id,
+            name: row.professional.name,
+            specialty: row.professional.specialty,
+        }));
+
+        return data;
     }
 
     async SendRequest(id: number, userId: number) {
