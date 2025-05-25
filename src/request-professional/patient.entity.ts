@@ -20,4 +20,4 @@ export const patientTable = pgTable('patient', {
 
 export default patientTable;
 
-export type Request = InferSelectModel<typeof patientTable>;
+export type Patient = InferSelectModel<typeof patientTable>;
