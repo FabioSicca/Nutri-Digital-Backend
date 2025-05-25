@@ -15,6 +15,8 @@ import { ProfessionalService } from './professional/professional.service';
 import { PorgressPanelController } from './progress-panel/progress.controller';
 import { RequestService } from './request-professional/request.service';
 import { RequestController } from './request-professional/request.controller';
+import { MessagesService } from './messages/messages.service';
+import { MessagesController } from './messages/messages.controller';
 
 @Module({
 	imports: [],
@@ -27,7 +29,8 @@ import { RequestController } from './request-professional/request.controller';
 		NutrientGoalsController,
 		ProfessionalController,
 		PorgressPanelController,
-		RequestController
+		RequestController,
+		MessagesController
 	],
 	providers: [
 		UserService,
@@ -36,7 +39,8 @@ import { RequestController } from './request-professional/request.controller';
 		HidratationService,
 		NutrientGoalsService,
 		ProfessionalService,
-		RequestService
+		RequestService,
+		MessagesService
 	],
 })
 export class AppModule {}
