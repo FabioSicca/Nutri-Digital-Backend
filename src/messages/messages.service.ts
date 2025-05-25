@@ -2,7 +2,7 @@ import db from '../config/db.config';
 import messagesTable, { Messages } from './messages.entity';
 import usersTable from '@/user/user.entity';
 import { Injectable } from '@nestjs/common';
-import { eq, and } from 'drizzle-orm';
+import { eq, or, and } from 'drizzle-orm';
 
 @Injectable()
 export class MessagesService {
@@ -30,4 +30,24 @@ export class MessagesService {
 			.returning();
 		return newMessage;
 	}
+
+	async getMessagesExchanged(my_user_id: number, target_user_id: number,) {
+		const resp = await db
+			.select()
+			.from(messagesTable)
+			.where(
+				or(
+					and(
+						eq(messagesTable.recipient_user_id, my_user_id),
+						eq(messagesTable.sender_user_id, target_user_id),
+					),
+					and(
+						eq(messagesTable.recipient_user_id, target_user_id),
+						eq(messagesTable.sender_user_id, my_user_id),
+					),
+				),
+			);
+		return resp;
+	}
+	
 }

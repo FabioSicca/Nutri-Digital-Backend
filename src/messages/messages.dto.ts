@@ -2,7 +2,7 @@ import { IsInt, IsString, IsOptional, IsNotEmpty } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class MessageCreationDto {
-	@IsInt()
+	@IsNotEmpty()
 	@ApiProperty()
 	recipient_user_id: number;
 

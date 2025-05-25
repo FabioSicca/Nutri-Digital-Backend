@@ -22,7 +22,10 @@ export class MessagesController {
 	@Post()
 	@UseGuards(JwtAuthGuard)
 	@ApiOperation({ summary: 'Add message' })
-	public async addMessage(@Body() req: MessageCreationDto, @Headers() headers: Record<string, string>,) {
+	public async addMessage(
+		@Body() req: MessageCreationDto,
+		@Headers() headers: Record<string, string>,
+	) {
 		let sender_user_id = GetUserId(headers);
 		return await this.messagesService.addMessage(
 			sender_user_id,
@@ -30,4 +33,19 @@ export class MessagesController {
 			req.text_content,
 		);
 	}
+	
+	@Get()
+	@UseGuards(JwtAuthGuard)
+	@ApiOperation({ summary: 'Get messages exchanged' })
+	public async getMessagesExchanged(
+		@Query('target_user_id') target_user_id: number,
+		@Headers() headers: Record<string, string>,
+	) {
+		let my_user_id = GetUserId(headers);
+		return await this.messagesService.getMessagesExchanged(
+			my_user_id,
+			target_user_id,
+		);
+	}
+
 }
