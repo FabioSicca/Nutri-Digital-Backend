@@ -52,14 +52,14 @@ export class UserController {
 		if (!currentUser[0]) {
 			throw new UnauthorizedException();
 		}
-		const claims = { id: currentUser[0].id, name: currentUser[0].user };
+		const claims = { id: currentUser[0].id, name: currentUser[0].user, professional: currentUser[0].role == 'medic' ? true : false };
 		if (!process.env.JWT_SECRET) {
 			throw new Error(
 				'JWT_SECRET is not defined in environment variables',
 			);
 		}
 		const token = jwt.sign(claims, process.env.JWT_SECRET, {
-			expiresIn: '1h',
+			expiresIn: '24h',
 		});
 		res.setHeader('user-id', currentUser[0].id);
 		return res.status(200).json({

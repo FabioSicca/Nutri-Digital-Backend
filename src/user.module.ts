@@ -17,6 +17,10 @@ import { RequestService } from './request-professional/request.service';
 import { RequestController } from './request-professional/request.controller';
 import { MessagesService } from './messages/messages.service';
 import { MessagesController } from './messages/messages.controller';
+import { PatientService } from './request-professional/patient.service';
+import { PatientController } from './request-professional/patient.controller';
+import { PlaceService } from './place/place.service';
+import { PlaceController } from './place/place.controller';
 
 @Module({
 	imports: [],
@@ -30,7 +34,9 @@ import { MessagesController } from './messages/messages.controller';
 		ProfessionalController,
 		PorgressPanelController,
 		RequestController,
-		MessagesController
+		MessagesController,
+		PatientController,
+		PlaceController
 	],
 	providers: [
 		UserService,
@@ -40,7 +46,9 @@ import { MessagesController } from './messages/messages.controller';
 		NutrientGoalsService,
 		ProfessionalService,
 		RequestService,
-		MessagesService
+		MessagesService,
+		PatientService,
+		PlaceService
 	],
 })
 export class AppModule {}

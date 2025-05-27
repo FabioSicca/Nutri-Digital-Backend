@@ -2,6 +2,7 @@ import db from '../config/db.config';
 import { Injectable } from '@nestjs/common';
 import { and, eq } from 'drizzle-orm';
 import requestTable from './request.entity';
+import patientTable from './patient.entity';
 import usersTable from '@/user/user.entity';
 import professionalTable from '@/professional/professional.entity';
 import { sql } from 'drizzle-orm';
@@ -34,7 +35,7 @@ export class RequestService {
 
     async getUserRequest(id: number) {
 
-        let row = await db
+        const row = await db
             .select()
             .from(requestTable)
             .where(
@@ -43,10 +44,17 @@ export class RequestService {
             )
             .innerJoin(
                 professionalTable,
-                eq(professionalTable.id, requestTable.id_user),
+                eq(professionalTable.id, requestTable.id_professional),
             );
 
-        return row.length > 0;
+
+        const data = row.map(row => ({
+            id: row.request.id,
+            name: row.professional.name,
+            specialty: row.professional.specialty,
+        }));
+
+        return data;
     }
 
     async SendRequest(id: number, userId: number) {
@@ -65,23 +73,28 @@ export class RequestService {
 
     async CancelRequest(id: number) {
         const [updatedRequest] = await db
-        .update(requestTable)
-        .set({ state: 'cancel' })
-        .where(eq(requestTable.id, id))
-        .returning();
+            .update(requestTable)
+            .set({ state: 'cancel' })
+            .where(eq(requestTable.id, id))
+            .returning();
         return updatedRequest
     }
 
     async ApproveRequest(id: number) {
 
         const [updatedRequest] = await db
-        .update(requestTable)
-        .set({ state: 'approved' })
-        .where(eq(requestTable.id, id))
-        .returning();
+            .update(requestTable)
+            .set({ state: 'approved' })
+            .where(eq(requestTable.id, id))
+            .returning();
 
-        //ToDo: Una vez se aprobo la solicitud, habria que agregar una tabla pacientes
-        // donde se relaciona id professional con distintos usuarios
+        await db
+            .insert(patientTable)
+            .values({
+                id_professional: updatedRequest.id_professional,
+                id_user: updatedRequest.id_user,
+            })
+            .returning();
 
         return updatedRequest;
     }

@@ -12,7 +12,7 @@ import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { GetUserId } from '../util/utils';
 import { RequestService } from './request.service';
 
-@ApiTags('Requeste')
+@ApiTags('Request')
 @Controller('request')
 export class RequestController {
     constructor(private readonly requestService: RequestService) { }
