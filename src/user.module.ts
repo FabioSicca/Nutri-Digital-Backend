@@ -21,6 +21,8 @@ import { PatientService } from './request-professional/patient.service';
 import { PatientController } from './request-professional/patient.controller';
 import { PlaceService } from './place/place.service';
 import { PlaceController } from './place/place.controller';
+import { ExerciseGoalsController } from './exercise-goals/excercise-goals.controller';
+import { ExerciseGoalsService } from './exercise-goals/exercise-goals.service';
 
 @Module({
 	imports: [],
@@ -36,7 +38,8 @@ import { PlaceController } from './place/place.controller';
 		RequestController,
 		MessagesController,
 		PatientController,
-		PlaceController
+		PlaceController,
+		ExerciseGoalsController
 	],
 	providers: [
 		UserService,
@@ -48,7 +51,8 @@ import { PlaceController } from './place/place.controller';
 		RequestService,
 		MessagesService,
 		PatientService,
-		PlaceService
+		PlaceService,
+		ExerciseGoalsService
 	],
 })
 export class AppModule {}
