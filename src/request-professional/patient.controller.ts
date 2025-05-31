@@ -30,4 +30,11 @@ export class PatientController {
     public async getMyPatients(@Query('id') id: number) {
         return await this.patientService.getPatientst(id);
     }
+
+    @Delete()
+    @ApiOperation({ summary: 'Delete patient for professional' })
+    @UseGuards(JwtAuthGuard)
+    public async changeProfessional(@Query('id') id: number) {
+        return await this.patientService.changeProfessional(id);
+    }
 }
