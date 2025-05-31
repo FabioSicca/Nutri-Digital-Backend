@@ -57,6 +57,20 @@
       "when": 1748197159135,
       "tag": "0007_loose_mikhail_rasputin",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1748457973588,
+      "tag": "0008_empty_rocket_racer",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1748631730058,
+      "tag": "0009_tiny_ultron",
+      "breakpoints": true
     }
   ]
 }
