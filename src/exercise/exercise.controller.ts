@@ -7,6 +7,7 @@ import {
 	Body,
 	Delete,
   Headers,
+  Header,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
@@ -46,5 +47,16 @@ export class ExerciseController {
   ) {
     const userId = GetUserId(headers);
     return await this.exerciseService.getAllExercises();
+  }
+
+  @Delete()
+  @ApiOperation({ summary: 'Delete exercise from exercises done for a user' })
+  @UseGuards(JwtAuthGuard)
+  public async deleteExerciseFromDone(
+    @Query('id') id: number,
+    @Headers() headers: Record<string, string>
+  ) {
+    const userId = GetUserId(headers);
+    return await this.exerciseService.deleteExerciseFromDone(id);
   }
 }

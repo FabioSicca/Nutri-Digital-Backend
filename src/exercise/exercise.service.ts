@@ -63,4 +63,16 @@ export class ExerciseService {
     return await db.select().from(exerciseTypesTable);
   }
 
+  async deleteExerciseFromDone(id: number): Promise<any> {
+    const [deletedExercise] = await db
+      .delete(exerciseDoneTable)
+      .where(
+        and(
+          eq(exerciseDoneTable.id, id),
+        )
+      )
+      .returning();
+    return deletedExercise;
+  }
+
 }
