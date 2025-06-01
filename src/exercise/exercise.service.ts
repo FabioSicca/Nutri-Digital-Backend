@@ -59,4 +59,8 @@ export class ExerciseService {
     return exercises;
   }
 
+  async getAllExercises(): Promise<any[]> {
+    return await db.select().from(exerciseTypesTable);
+  }
+
 }

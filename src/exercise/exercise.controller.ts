@@ -37,4 +37,14 @@ export class ExerciseController {
     let day = GetDay(date);
     return await this.exerciseService.getExercisesFromDay(userId, day);
   }
+
+  @Get('all')
+  @ApiOperation({ summary: 'Get all exercises types' })
+  @UseGuards(JwtAuthGuard)
+  public async getAllExercises(
+    @Headers() headers: Record<string, string>,
+  ) {
+    const userId = GetUserId(headers);
+    return await this.exerciseService.getAllExercises();
+  }
 }
