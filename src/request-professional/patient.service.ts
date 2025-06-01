@@ -9,6 +9,7 @@ import { sql } from 'drizzle-orm';
 
 @Injectable()
 export class PatientService {
+    
     async getProfessional(id: number) {
         var row = await db
             .select()
@@ -25,6 +26,14 @@ export class PatientService {
             specialty: row.professional.specialty,
         }));
         return data;
+    }
+
+    async changeProfessional(id: number) {
+        const result = await db
+            .delete(patientTable)
+            .where(eq(patientTable.id_user, id));
+        
+        if (result.rowCount === 0) throw new Error('No patients deleted');
     }
 
     async getPatientst(id: number) {
