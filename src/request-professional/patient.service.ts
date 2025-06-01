@@ -31,7 +31,7 @@ export class PatientService {
     async changeProfessional(id: number) {
         const result = await db
             .delete(patientTable)
-            .where(eq(patientTable.id, id));
+            .where(eq(patientTable.id_user, id));
         
         if (result.rowCount === 0) throw new Error('No patients deleted');
     }
