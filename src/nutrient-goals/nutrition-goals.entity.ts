@@ -1,4 +1,4 @@
-import { pgTable, serial, real, integer } from 'drizzle-orm/pg-core';
+import { pgTable, serial, real, integer, date } from 'drizzle-orm/pg-core';
 import usersTable from '@/user/user.entity';
 import { InferSelectModel } from 'drizzle-orm';
 
@@ -11,6 +11,7 @@ export const nutritionGoalsTable = pgTable('nutrition_goals', {
 	total_fat: real('total_fat'),
 	total_carbs: real('total_carbs'),
 	protein: real('protein'),
+	date_consumed: date('fecha', { mode: 'date' }).notNull(),
 });
 
 export default nutritionGoalsTable;

@@ -71,6 +71,13 @@
       "when": 1748722638839,
       "tag": "0009_married_shriek",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1748812375667,
+      "tag": "0010_cynical_mantis",
+      "breakpoints": true
     }
   ]
 }

@@ -1,4 +1,4 @@
-import { pgTable, serial, real, integer } from 'drizzle-orm/pg-core';
+import { pgTable, serial, real, date, integer } from 'drizzle-orm/pg-core';
 import usersTable from '@/user/user.entity';
 import { InferSelectModel } from 'drizzle-orm';
 
@@ -20,6 +20,7 @@ export const micronutrientGoalsTable = pgTable('micronutrient_goals', {
 	vitamin_c: real('vitamin_c'), // mg por día
 	calcium: real('calcium'), // mg por día
 	iron: real('iron'), // mg por día
+	date_consumed: date('fecha', { mode: 'date' }).notNull(),
 });
 
 export default micronutrientGoalsTable;
