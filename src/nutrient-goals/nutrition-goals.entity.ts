@@ -11,7 +11,6 @@ export const nutritionGoalsTable = pgTable('nutrition_goals', {
 	total_fat: real('total_fat'),
 	total_carbs: real('total_carbs'),
 	protein: real('protein'),
-	date_consumed: date('fecha', { mode: 'date' }).notNull(),
 });
 
 export default nutritionGoalsTable;

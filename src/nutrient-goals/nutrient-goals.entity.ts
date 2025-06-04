@@ -20,7 +20,6 @@ export const micronutrientGoalsTable = pgTable('micronutrient_goals', {
 	vitamin_c: real('vitamin_c'), // mg por día
 	calcium: real('calcium'), // mg por día
 	iron: real('iron'), // mg por día
-	date_consumed: date('fecha', { mode: 'date' }).notNull(),
 });
 
 export default micronutrientGoalsTable;

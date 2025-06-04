@@ -7,150 +7,67 @@ import exerciseDoneTable from '../exercise/exercise-done.entity';
 import hidratationTable from '../hidratation/hidratation.entity';
 import { ReportType } from './report.types';
 import { subDays } from 'date-fns';
+import consumedTable from '../consumed/consumed.entity';
+import foodTable from '@/food/food.entity';
 
 @Injectable()
 export class ReportService {
-
-    private readonly typeConfig: Record<ReportType, {
-        table: any;
-        valueColumn: any;
-        dateColumn: any;
-      }> = {
-        calories: {
-          table: nutritionGoalsTable,
-          valueColumn: nutritionGoalsTable.calories,
-          dateColumn: nutritionGoalsTable.date_consumed,
-        },
-        total_carbs: {
-          table: nutritionGoalsTable,
-          valueColumn: nutritionGoalsTable.total_carbs,
-          dateColumn: nutritionGoalsTable.date_consumed,
-        },
-        total_fat: {
-          table: nutritionGoalsTable,
-          valueColumn: nutritionGoalsTable.total_fat,
-          dateColumn: nutritionGoalsTable.date_consumed,
-        },
-        protein: {
-          table: nutritionGoalsTable,
-          valueColumn: nutritionGoalsTable.protein,
-          dateColumn: nutritionGoalsTable.date_consumed,
-        },
-      
-        saturated_fat: {
-          table: micronutrientGoalsTable,
-          valueColumn: micronutrientGoalsTable.saturated_fat,
-          dateColumn: micronutrientGoalsTable.date_consumed,
-        },
-        polyunsaturated_fat: {
-          table: micronutrientGoalsTable,
-          valueColumn: micronutrientGoalsTable.polyunsaturated_fat,
-          dateColumn: micronutrientGoalsTable.date_consumed,
-        },
-        monounsaturated_fat: {
-          table: micronutrientGoalsTable,
-          valueColumn: micronutrientGoalsTable.monounsaturated_fat,
-          dateColumn: micronutrientGoalsTable.date_consumed,
-        },
-        trans: {
-          table: micronutrientGoalsTable,
-          valueColumn: micronutrientGoalsTable.trans,
-          dateColumn: micronutrientGoalsTable.date_consumed,
-        },
-        cholesterol: {
-          table: micronutrientGoalsTable,
-          valueColumn: micronutrientGoalsTable.cholesterol,
-          dateColumn: micronutrientGoalsTable.date_consumed,
-        },
-        sodium: {
-          table: micronutrientGoalsTable,
-          valueColumn: micronutrientGoalsTable.sodium,
-          dateColumn: micronutrientGoalsTable.date_consumed,
-        },
-        potassium: {
-          table: micronutrientGoalsTable,
-          valueColumn: micronutrientGoalsTable.potassium,
-          dateColumn: micronutrientGoalsTable.date_consumed,
-        },
-        fiber: {
-          table: micronutrientGoalsTable,
-          valueColumn: micronutrientGoalsTable.fiber,
-          dateColumn: micronutrientGoalsTable.date_consumed,
-        },
-        sugar: {
-          table: micronutrientGoalsTable,
-          valueColumn: micronutrientGoalsTable.sugar,
-          dateColumn: micronutrientGoalsTable.date_consumed,
-        },
-        vitamin_a: {
-          table: micronutrientGoalsTable,
-          valueColumn: micronutrientGoalsTable.vitamin_a,
-          dateColumn: micronutrientGoalsTable.date_consumed,
-        },
-        vitamin_c: {
-          table: micronutrientGoalsTable,
-          valueColumn: micronutrientGoalsTable.vitamin_c,
-          dateColumn: micronutrientGoalsTable.date_consumed,
-        },
-        calcium: {
-          table: micronutrientGoalsTable,
-          valueColumn: micronutrientGoalsTable.calcium,
-          dateColumn: micronutrientGoalsTable.date_consumed,
-        },
-        iron: {
-          table: micronutrientGoalsTable,
-          valueColumn: micronutrientGoalsTable.iron,
-          dateColumn: micronutrientGoalsTable.date_consumed,
-        },
-      
-        calories_burned: {
-          table: exerciseDoneTable,
-          valueColumn: exerciseDoneTable.calories_burned,
-          dateColumn: exerciseDoneTable.date,
-        },
-      
-        mililiters: {
-          table: hidratationTable,
-          valueColumn: hidratationTable.mililiters,
-          dateColumn: hidratationTable.date_consumed,
-        },
-    };
       
 
-    async getReport(id_user: number, type: ReportType): Promise<
-      { quantity_consumed: number; date_consumed: Date }[]
-    > {
-    const config = this.typeConfig[type];
+    async getReport(id_user: number): Promise<any> {
+        const thirtyDaysAgo = subDays(new Date(), 30);
+    
+        const consumedUser = await db
+            .select()
+            .from(consumedTable)
+            .where(
+                and(
+                    eq(consumedTable.id_user, id_user),
+                    gte(consumedTable.date_consumed, thirtyDaysAgo)
+                )
+            );
+        
+        if (consumedUser.length === 0) throw new Error('No consumed founded');
+
+        const waterConsumed = await db
+                    .select()
+                    .from(hidratationTable)
+                    .where(
+                        and(
+                            eq(hidratationTable.id_user, id_user),
+                            gte(hidratationTable.date_consumed, thirtyDaysAgo)
+                        )
+                    );
+        const caloriesBurnedUser = await db
+                            .select()
+                            .from(exerciseDoneTable)
+                            .where(
+                                and(
+                                    eq(exerciseDoneTable.id_user, id_user),
+                                    gte(exerciseDoneTable.date, thirtyDaysAgo)
+                                )
+                            );
+
+
+        //se debe mapear waterConsumed(se van sumando la cantidad de agua, de todos los registros)
+        //y con lo de food, se debe hacer mapeo final, sumando los campos(sea fibra, calorias, etc)        
+        //idem con los ejercicios realizados(se suma las calorias quemadas)
+        console.log('CANTIDAD DE AGUA CONSUMIDA', waterConsumed.length);
+
+        const foodConsumed = await db
+                    .select()
+                    .from(consumedTable)
+                    .innerJoin(
+                        foodTable,
+                        eq(foodTable.id, consumedTable.id_food),
+                    )
+                    .where(
+                        eq(consumedTable.id_user, id_user)
+                    )
   
-    const { table, valueColumn, dateColumn } = config;
+        if (foodConsumed.length === 0) throw new Error('No food founded');
 
-    const thirtyDaysAgo = subDays(new Date(), 30);
-  
-    const results = await db
-        .select({
-            quantity_consumed: valueColumn,
-            date_consumed: dateColumn,
-        })
-        .from(table)
-        .where(
-          and(
-            eq(table.id_user, id_user),
-            gte(dateColumn, thirtyDaysAgo)
-          )
-        );
-  
-      return results;
-    }
-
-    isValidReportType(type: string): type is ReportType {
-        const validTypes: ReportType[] = [
-            'calories', 'total_carbs', 'total_fat', 'protein',
-            'trans', 'monounsaturated_fat', 'polyunsaturated_fat', 'saturated_fat',
-            'cholesterol', 'sodium', 'potassium', 'fiber', 'sugar',
-            'vitamin_a', 'vitamin_c', 'calcium', 'iron',
-            'calories_burned', 'mililiters',
-        ];
-        return validTypes.includes(type as ReportType);
+        return consumedUser;
     }
   
 }

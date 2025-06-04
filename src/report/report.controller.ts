@@ -10,15 +10,13 @@ export class ReportController {
 	constructor(private readonly reportService: ReportService) {}
 
 	@Get()
-	@UseGuards(JwtAuthGuard)
+	//@UseGuards(JwtAuthGuard)
 	@ApiOperation({ summary: 'Get Report for user' })
 	@ApiResponse({
 		status: 200,
 		description: 'Returns an array of info of last 30 days',
 	})
-	async getReport(@Query('id_user') id_user: number, @Query('type') type: string): Promise<any> {
-        if (!this.reportService.isValidReportType(type)) throw new Error('Invalid type parameter');
-
-        return await this.reportService.getReport(id_user, type as ReportType);
+	async getReport(@Query('id_user') id_user: number): Promise<any> {
+        return await this.reportService.getReport(id_user);
 	}
 }
