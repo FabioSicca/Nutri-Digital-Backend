@@ -10,7 +10,7 @@ export class ReportController {
 	constructor(private readonly reportService: ReportService) {}
 
 	@Get()
-	//@UseGuards(JwtAuthGuard)
+	@UseGuards(JwtAuthGuard)
 	@ApiOperation({ summary: 'Get Report for user' })
 	@ApiResponse({
 		status: 200,

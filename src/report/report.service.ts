@@ -17,7 +17,7 @@ export class ReportService {
     async getReport(id_user: number): Promise<any> {
         const thirtyDaysAgo = subDays(new Date(), 30);
     
-        const consumedUser = await db
+        /*const consumedUser = await db
             .select()
             .from(consumedTable)
             .where(
@@ -26,19 +26,28 @@ export class ReportService {
                     gte(consumedTable.date_consumed, thirtyDaysAgo)
                 )
             );
+        //aca tengo todo lo que consumio el usuario en los ultimos 30 dias
+        //en cada registtro tengo id_user y id_food
         
-        if (consumedUser.length === 0) throw new Error('No consumed founded');
+        if (consumedUser.length === 0) throw new Error('No consumed founded');*/
 
         const waterConsumed = await db
-                    .select()
+                    .select({
+                        date: hidratationTable.date_consumed,
+                        mililiters: sql<number>`SUM(${hidratationTable.mililiters})`,
+                    })
                     .from(hidratationTable)
                     .where(
                         and(
                             eq(hidratationTable.id_user, id_user),
                             gte(hidratationTable.date_consumed, thirtyDaysAgo)
                         )
-                    );
-        const caloriesBurnedUser = await db
+                    )
+                    .groupBy(hidratationTable.date_consumed);
+
+        //aca tengo el agua que consumio en los ultimos 3 dias, y ahora lo quiero agrupar por
+        //fecha y acumular el campo mililiters, por dia, me tiene que aparecer la suma
+        /*const caloriesBurnedUser = await db
                             .select()
                             .from(exerciseDoneTable)
                             .where(
@@ -46,13 +55,13 @@ export class ReportService {
                                     eq(exerciseDoneTable.id_user, id_user),
                                     gte(exerciseDoneTable.date, thirtyDaysAgo)
                                 )
-                            );
+                            );*/
 
 
         //se debe mapear waterConsumed(se van sumando la cantidad de agua, de todos los registros)
         //y con lo de food, se debe hacer mapeo final, sumando los campos(sea fibra, calorias, etc)        
         //idem con los ejercicios realizados(se suma las calorias quemadas)
-        console.log('CANTIDAD DE AGUA CONSUMIDA', waterConsumed.length);
+        /*console.log('CANTIDAD DE AGUA CONSUMIDA', waterConsumed.length);
 
         const foodConsumed = await db
                     .select()
@@ -65,9 +74,9 @@ export class ReportService {
                         eq(consumedTable.id_user, id_user)
                     )
   
-        if (foodConsumed.length === 0) throw new Error('No food founded');
+        if (foodConsumed.length === 0) throw new Error('No food founded');*/
 
-        return consumedUser;
+        return waterConsumed;
     }
   
 }
