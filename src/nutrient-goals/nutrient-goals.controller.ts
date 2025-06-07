@@ -53,10 +53,13 @@ export class NutrientGoalsController {
 	public async addNutrientGoals(
 		@Body() nutrientGoals: NutrientGoalsDto,
 		@Request() req: Request,
+		@Query('userId') userId?: number,
 	) {
-		const userIdFromToken = GetUserId(req.headers);
+		if (!userId) {
+			userId = GetUserId(req.headers);
+		}
 		return await this.nutrientGoalsService.addNutrientGoals(
-			userIdFromToken,
+			userId,
 			nutrientGoals,
 		);
 	}
@@ -71,10 +74,13 @@ export class NutrientGoalsController {
 	public async addNutritionGoals(
 		@Body() nutritionGoals: NutritionGoalsDto,
 		@Request() req: Request,
+		@Query('userId') userId?: number,
 	) {
-		const userIdFromToken = GetUserId(req.headers);
+		if (!userId) {
+			userId = GetUserId(req.headers);
+		}
 		return await this.nutrientGoalsService.addNutritionGoals(
-			userIdFromToken,
+			userId,
 			nutritionGoals,
 		);
 	}
@@ -89,13 +95,13 @@ export class NutrientGoalsController {
 	public async updateNutrientGoals(
 		@Body() nutrientGoals: NutrientGoalsDto,
 		@Request() req: Request,
+		@Query('userId') userId?: number,
 	) {
-		const user_id = GetUserId(req.headers);
-		if (!user_id) {
-			throw new BadRequestException('User ID is required');
+		if (!userId) {
+			userId = GetUserId(req.headers);
 		}
 		return await this.nutrientGoalsService.updateNutrientGoals(
-			user_id,
+			userId,
 			nutrientGoals,
 		);
 	}
@@ -110,13 +116,13 @@ export class NutrientGoalsController {
 	public async updateNutritionGoals(
 		@Body() nutritionGoals: NutritionGoalsDto,
 		@Request() req: Request,
+		@Query('userId') userId?: number,
 	) {
-		const user_id = GetUserId(req.headers);
-		if (!user_id) {
-			throw new BadRequestException('User ID is required');
+		if (!userId) {
+			userId = GetUserId(req.headers);
 		}
 		return await this.nutrientGoalsService.updateNutritionGoals(
-			user_id,
+			userId,
 			nutritionGoals,
 		);
 	}
