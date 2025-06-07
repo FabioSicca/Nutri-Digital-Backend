@@ -87,6 +87,11 @@ export class ReportService {
                 )
                 .groupBy(exerciseDoneTable.date);
         
-        return caloriesBurnedUser;
+        const formatted = caloriesBurnedUser.map(entry => ({
+            ...entry,
+            calories_burned: entry.calories_burned.toString()
+        }));
+        
+        return formatted;
     }
 }
