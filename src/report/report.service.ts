@@ -18,7 +18,7 @@ export class ReportService {
 
         const waterConsumed = await this.getWaterConsumed(id_user, thirtyDaysAgo);
 
-        const caloriesBurnedUser = await this.getWaterConsumed(id_user, thirtyDaysAgo);
+        const caloriesBurnedUser = await this.getCaloriesBurned(id_user, thirtyDaysAgo);
 
         const response = {
             water: waterConsumed,
@@ -33,8 +33,6 @@ export class ReportService {
         const foodConsumed = await db
             .select({
                 date: consumedTable.date_consumed,
-                id_food: foodTable.id,
-                name: foodTable.name,
                 calories: sql<number> `SUM(${foodTable.calories})`.as("calories")
             })
             .from(consumedTable)
@@ -48,11 +46,8 @@ export class ReportService {
                     gte(consumedTable.date_consumed, thirtyDaysAgo)
                 )
             )
-            .groupBy(
-                consumedTable.date_consumed,
-                foodTable.id,
-                foodTable.name
-            );
+            .groupBy(consumedTable.date_consumed);
+
         return foodConsumed;
     }
 
