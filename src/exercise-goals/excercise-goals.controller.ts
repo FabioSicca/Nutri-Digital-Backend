@@ -1,4 +1,4 @@
-import { Controller, Patch, UseGuards, Request, Body, Get } from "@nestjs/common";
+import { Controller, Patch, UseGuards, Request, Body, Get, Query } from "@nestjs/common";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { ExerciseGoalsService } from "./exercise-goals.service";
 import { ExerciseGoalsDto } from "./exercise-goals.dto";
@@ -20,9 +20,12 @@ export class ExerciseGoalsController {
   public async updateExerciseGoals(
     @Body() exerciseGoalsDto: ExerciseGoalsDto,
     @Request() req: Request,
+    @Query('userId') userId?: number,
   ) {
-    const user_id = GetUserId(req.headers);
-    return await this.exerciseGoalsService.updateExerciseGoals(user_id, exerciseGoalsDto);
+    if (!userId) {
+			userId = GetUserId(req.headers);
+		}
+    return await this.exerciseGoalsService.updateExerciseGoals(userId, exerciseGoalsDto);
   }
 
   @Get('get')
@@ -32,8 +35,10 @@ export class ExerciseGoalsController {
     status: 200,
     description: 'Retrieves the exercise goals for the user.',
   })
-  public async getExerciseGoals(@Request() req: Request) {
-    const user_id = GetUserId(req.headers);
-    return await this.exerciseGoalsService.getExerciseGoals(user_id);
+  public async getExerciseGoals(@Request() req: Request, @Query('userId') userId?: number,) {
+    if (!userId) {
+			userId = GetUserId(req.headers);
+		}
+    return await this.exerciseGoalsService.getExerciseGoals(userId);
   }
 }
