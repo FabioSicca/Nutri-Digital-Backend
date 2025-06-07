@@ -17,7 +17,7 @@ import { GetUserId } from '@/util/utils';
 @ApiTags('Hidratation')
 @Controller('hidratation')
 export class HidratationController {
-	constructor(private readonly consumedService: HidratationService) {}
+	constructor(private readonly consumedService: HidratationService) { }
 
 	@Post()
 	@UseGuards(JwtAuthGuard)
@@ -40,8 +40,11 @@ export class HidratationController {
 	public async GetHidratationConsumed(
 		@Query('date') date: string,
 		@Headers() headers: Record<string, string>,
+		@Query('userId') userId?: number
 	) {
-		let userId = GetUserId(headers);
+		if (!userId) {
+			userId = GetUserId(headers);
+		}
 		const parsedDate = new Date(date);
 		return await this.consumedService.getHidratationConsumed(
 			userId,

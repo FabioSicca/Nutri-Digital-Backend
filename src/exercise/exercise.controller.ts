@@ -33,8 +33,11 @@ export class ExerciseController {
   public async getExercises(
     @Query('date') date: string,     
     @Headers() headers: Record<string, string>,
+    @Query('userId') userId?: number,
   ) {
-    const userId = GetUserId(headers);
+    if (!userId) {
+			userId = GetUserId(headers);
+		}
     let day = GetDay(date);
     return await this.exerciseService.getExercisesFromDay(userId, day);
   }
