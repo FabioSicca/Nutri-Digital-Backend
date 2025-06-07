@@ -23,4 +23,12 @@ export class ExerciseGoalsService {
       .where(eq(exerciseGoalsTable.id_user, user_id));
     return resp;
   }
+
+  async addExerciseGoals(userId: number, exerciseGoals: any): Promise<any> {
+		const resp = await db
+			.insert(exerciseGoalsTable)
+			.values({ ...exerciseGoals, id_user: userId })
+			.returning();
+		return resp;
+	}
 }

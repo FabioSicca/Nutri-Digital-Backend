@@ -35,4 +35,16 @@ export class ProfessionalService {
 			}))
 			.sort((a, b) => b.rate - a.rate);
 	}
+
+	async createProfessional(userId: number, name: string, specialty: string) {
+		const [newProfessional] = await db
+			.insert(professionalTable)
+			.values({
+				id: userId,
+				name,
+				specialty,
+			})
+			.returning();
+		return newProfessional;
+	}
 }
