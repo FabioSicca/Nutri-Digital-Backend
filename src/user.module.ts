@@ -25,6 +25,8 @@ import { ExerciseGoalsController } from './exercise-goals/excercise-goals.contro
 import { ExerciseGoalsService } from './exercise-goals/exercise-goals.service';
 import { ExerciseController } from './exercise/exercise.controller';
 import { ExerciseService } from './exercise/exercise.service';
+import { ReportController } from './report/report.controller';
+import { ReportService } from './report/report.service';
 
 @Module({
 	imports: [],
@@ -42,7 +44,8 @@ import { ExerciseService } from './exercise/exercise.service';
 		PatientController,
 		PlaceController,
 		ExerciseGoalsController,
-		ExerciseController
+		ExerciseController,
+		ReportController
 	],
 	providers: [
 		UserService,
@@ -56,7 +59,8 @@ import { ExerciseService } from './exercise/exercise.service';
 		PatientService,
 		PlaceService,
 		ExerciseGoalsService,
-		ExerciseService
+		ExerciseService,
+		ReportService
 	],
 })
 export class AppModule {}

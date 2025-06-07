@@ -1,4 +1,4 @@
-import { pgTable, serial, real, integer } from 'drizzle-orm/pg-core';
+import { pgTable, serial, real, integer, date } from 'drizzle-orm/pg-core';
 import usersTable from '@/user/user.entity';
 import { InferSelectModel } from 'drizzle-orm';
 
