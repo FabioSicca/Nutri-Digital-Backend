@@ -24,6 +24,13 @@ export class RequestController {
         return await this.requestService.getProfessionalRequests(id);
     }
 
+    @Get('pendings')
+    @ApiOperation({ summary: 'Get how many request pendings has a professional' })
+    @UseGuards(JwtAuthGuard)
+    public async getPendingsForProfessional(@Query('id') id: number) {
+        return await this.requestService.getPendingsRequests(id);
+    }
+
     @Get('client')
     @ApiOperation({ summary: 'Get Request active for a client' })
     @UseGuards(JwtAuthGuard)

@@ -33,6 +33,26 @@ export class RequestService {
         return data;
     }
 
+    async getPendingsRequests(id: number) {
+
+        let row = await db
+            .select()
+            .from(requestTable)
+            .where(
+                and(eq(requestTable.id_professional, id),
+                    eq(requestTable.state, 'pending'))
+            )
+            .innerJoin(
+                usersTable,
+                eq(usersTable.id, requestTable.id_user),
+            );
+
+        return {
+            pending: row.length === 0 ? false : true,
+            count: row.length
+        };
+    }
+
     async getUserRequest(id: number) {
 
         const row = await db
