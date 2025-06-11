@@ -29,7 +29,7 @@ export class ExerciseService {
 
   async addExerciseToDone(exerciseDoneInfo: ExerciseDoneDto): Promise<any> {
     const today = new Date(exerciseDoneInfo.date);
-    const dateOnly = new Date(today.toISOString());
+    const dateOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
     const exercise = await this.getExerciseById(exerciseDoneInfo.id_exercise);
     if (! exercise) {
       throw new Error('Exercise not found');
