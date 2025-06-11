@@ -33,10 +33,10 @@ export class ReportService {
         const foodConsumed = await db
             .select({
                 date: consumedTable.date_consumed,
-                total_carbs: sql<number> `SUM(${foodTable.total_carbs})`.as("total_carbs"), 
-                calories: sql<number> `SUM(${foodTable.calories})`.as("calories"),
-                total_fat: sql<number> `SUM(${foodTable.total_fat})`.as("total_fat"),
-                protein: sql<number> `SUM(${foodTable.protein})`.as("protein")
+                total_carbs: sql<number> `SUM(${foodTable.total_carbs} * ${consumedTable.portion})`.as("total_carbs"), 
+                calories: sql<number> `SUM(${foodTable.calories}* ${consumedTable.portion})`.as("calories"),
+                total_fat: sql<number> `SUM(${foodTable.total_fat}* ${consumedTable.portion})`.as("total_fat"),
+                protein: sql<number> `SUM(${foodTable.protein}* ${consumedTable.portion})`.as("protein")
             })
             .from(consumedTable)
             .innerJoin(
@@ -50,7 +50,6 @@ export class ReportService {
                 )
             )
             .groupBy(consumedTable.date_consumed);
-
         return foodConsumed;
     }
 
