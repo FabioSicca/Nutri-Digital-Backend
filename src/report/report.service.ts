@@ -33,10 +33,10 @@ export class ReportService {
         const foodConsumed = await db
             .select({
                 date: consumedTable.date_consumed,
-                total_carbs: sql<number> `SUM(${foodTable.total_carbs} * ${consumedTable.portion})`.as("total_carbs"), 
-                calories: sql<number> `SUM(${foodTable.calories}* ${consumedTable.portion})`.as("calories"),
-                total_fat: sql<number> `SUM(${foodTable.total_fat}* ${consumedTable.portion})`.as("total_fat"),
-                protein: sql<number> `SUM(${foodTable.protein}* ${consumedTable.portion})`.as("protein")
+                total_carbs: sql<number> `SUM(${foodTable.total_carbs} * CAST(${consumedTable.portion} AS INTEGER))`.as("total_carbs"), 
+                calories: sql<number> `SUM(${foodTable.calories} * CAST(${consumedTable.portion} AS INTEGER))`.as("calories"),
+                total_fat: sql<number> `SUM(${foodTable.total_fat} * CAST(${consumedTable.portion} AS INTEGER))`.as("total_fat"),
+                protein: sql<number> `SUM(${foodTable.protein} * CAST(${consumedTable.portion} AS INTEGER))`.as("protein")
             })
             .from(consumedTable)
             .innerJoin(
