@@ -87,12 +87,12 @@ export class ConsumedService {
 		const data = consumed.map(row => ({
 			id: row.consumed.id,
 			name: row.food.name,
-			calories: row.food.calories * Number(row.consumed.unit),
-			total_carbs: row.food.total_carbs * Number(row.consumed.unit),
-			total_fat: row.food.total_fat * Number(row.consumed.unit),
-			protein: row.food.protein * Number(row.consumed.unit),
-			sodium: row.food.sodium * Number(row.consumed.unit),
-			sugars: row.food.sugars * Number(row.consumed.unit),
+			calories: row.food.calories * Number(row.consumed.portion),
+			total_carbs: row.food.total_carbs * Number(row.consumed.portion),
+			total_fat: row.food.total_fat * Number(row.consumed.portion),
+			protein: row.food.protein * Number(row.consumed.portion),
+			sodium: row.food.sodium * Number(row.consumed.portion),
+			sugars: row.food.sugars * Number(row.consumed.portion),
 			type_of_food: row.consumed.type_of_food
 		}));
 
