@@ -1,4 +1,4 @@
-import { Min, IsNotEmpty, IsNumber } from 'class-validator';
+import { Min, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class ExerciseDoneDto {
@@ -17,4 +17,8 @@ export class ExerciseDoneDto {
   @Min(0)
   @ApiProperty()
   calories_burned: number;
+
+  @IsOptional()
+  @ApiProperty()
+  date: Date;
 }
