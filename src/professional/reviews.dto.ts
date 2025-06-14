@@ -14,8 +14,4 @@ export class ReviewCreationDto {
 	@IsNotEmpty()
 	@ApiProperty()
 	comment: string;
-
-	@IsOptional()
-	@ApiProperty()
-	review_date: Date;
 }

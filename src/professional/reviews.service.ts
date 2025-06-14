@@ -12,13 +12,17 @@ export class ReviewsService {
 		const [user] = await db.select().from(usersTable).where(eq(usersTable.id, id));
 		return user;
 	}
+	private async findProfessionalById(id: number) {
+		const [professional] = await db.select().from(professionalTable).where(eq(professionalTable.id, id));
+		return professional;
+	}
 
-	async addReview(user_id: number, doctor_id: number, score: number, comment: string, review_date: Date) {
+	async addReview(user_id: number, professional_id: number, score: number, comment: string, review_date: Date) {
 		let user = await this.findUserById(user_id);
-		if (!user) throw new Error('Sender user not found');
-		let doctor = await this.findUserById(doctor_id);
-		if (!doctor) throw new Error('Recipient user not found');
-		return await this.insertReviewOnTable(user_id, doctor_id, score, comment, review_date);
+		if (!user) throw new Error('Reviewer user not found');
+		let professional = await this.findProfessionalById(professional_id);
+		if (!professional) throw new Error('Professional user not found');
+		return await this.insertReviewOnTable(user_id, professional_id, score, comment, review_date);
 	}
 
 	private async insertReviewOnTable(user_id: number, professional_id: number, score: number, comment: string, review_date: Date) {
@@ -35,12 +39,11 @@ export class ReviewsService {
 		return newReview;
 	}
 
-	async getReviewsOfProfessional(professional_id: number) {
+	public async getReviewsOfProfessional(professional_id: number,) {
 		const resp = await db
 			.select()
 			.from(reviewsTable)
-			.where(eq(reviewsTable.professional_id, professional_id));
+			.where(eq(reviewsTable.professional_id, professional_id),);
 		return resp;
 	}
-	
 }
