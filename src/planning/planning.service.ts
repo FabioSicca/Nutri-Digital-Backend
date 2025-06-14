@@ -22,23 +22,23 @@ export class PlanningService {
 
     private async insertPlanningMeal(planning: PlanningDto) {
         const today = new Date();
-		const dateOnly = new Date(today.toISOString());
+        const dateOnly = new Date(today.toISOString());
 
-        console.log('antes de insertar');
-		const [newPlanning] = await db
-			.insert(planningTable)
-			.values({
-				portion: planning.portion,
-				day: planning.day,
-				name_food: planning.name_food,
-				id_user: planning.id_user,
-				id_food: planning.id_food,
-				date_planning: dateOnly,
-			})
-			.returning();
-            console.log('despues de insertar');
-		return newPlanning;
+        const [newPlanning] = await db
+            .insert(planningTable)
+            .values({
+                portion: planning.portion,
+                day: planning.day,
+                name_food: planning.name_food,
+                id_user: planning.id_user,
+                id_food: planning.id_food,
+                date_planning: dateOnly,
+            })
+            .returning();
+
+        return newPlanning;
     }
+    
 
     private async findUserById(id: number) {
 		const [user] = await db

@@ -12,7 +12,7 @@ export class PlanningController {
 
 	@Post()
 	@ApiOperation({ summary: 'Add information about planning meal' })
-	//@UseGuards(JwtAuthGuard)
+	@UseGuards(JwtAuthGuard)
 	public async addPlanningMeal(@Body() planning: PlanningDto) {
 		return await this.planningService.addPlanningMeal(planning);
 	}
