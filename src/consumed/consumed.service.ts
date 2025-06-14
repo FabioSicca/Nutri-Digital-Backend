@@ -136,4 +136,22 @@ export class ConsumedService {
 			Object.entries(result ?? {}).map(([k, v]) => [k, v ?? 0])
 		);
 	}
+
+	async getIfConsumedAlreadyLoadedToday(id_user: number): Promise<boolean> {
+		const today = new Date();
+		const dateOnly = new Date(today.toISOString());
+
+		const result = await db
+			.select()
+			.from(consumedTable)
+			.where(
+				and(
+					eq(consumedTable.id_user, id_user),
+					eq(consumedTable.date_consumed, dateOnly),
+				),
+			);
+
+		return result.length > 0;
+	}
+
 }

@@ -70,4 +70,21 @@ export class HidratationService {
 
 		return true;
 	}
+
+	async getIfHidratationAlreadyLoadedToday(id_user: number): Promise<boolean> {
+		const today = new Date();
+		const dateOnly = new Date(today.toISOString());
+
+		const resp = await db
+			.select()
+			.from(hidratationTable)
+			.where(
+				and(
+					eq(hidratationTable.id_user, id_user),
+					eq(hidratationTable.date_consumed, dateOnly),
+				),
+			);
+
+		return resp.length > 0;
+	}
 }

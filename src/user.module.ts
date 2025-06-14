@@ -27,6 +27,7 @@ import { ExerciseController } from './exercise/exercise.controller';
 import { ExerciseService } from './exercise/exercise.service';
 import { ReportController } from './report/report.controller';
 import { ReportService } from './report/report.service';
+import { ReminderController } from './reminders/reminders.controller';
 
 @Module({
 	imports: [],
@@ -45,7 +46,8 @@ import { ReportService } from './report/report.service';
 		PlaceController,
 		ExerciseGoalsController,
 		ExerciseController,
-		ReportController
+		ReportController,
+		ReminderController
 	],
 	providers: [
 		UserService,
