@@ -16,4 +16,11 @@ export class PlanningController {
 	public async addPlanningMeal(@Body() planning: PlanningDto) {
 		return await this.planningService.addPlanningMeal(planning);
 	}
+
+	@Get()
+	@ApiOperation({ summary: 'Get information about planning meal' })
+	@UseGuards(JwtAuthGuard)
+	public async getPlanningMeal(@Query('userId') userId: number, @Query('day') day: string) {
+		return await this.planningService.getPlanningMeal(userId, day);
+	}
 }
