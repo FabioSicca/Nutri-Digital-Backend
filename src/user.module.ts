@@ -27,6 +27,8 @@ import { ExerciseController } from './exercise/exercise.controller';
 import { ExerciseService } from './exercise/exercise.service';
 import { ReportController } from './report/report.controller';
 import { ReportService } from './report/report.service';
+import { PlanningController } from './planning/planning.controller';
+import { PlanningService } from './planning/planning.service';
 
 @Module({
 	imports: [],
@@ -45,7 +47,8 @@ import { ReportService } from './report/report.service';
 		PlaceController,
 		ExerciseGoalsController,
 		ExerciseController,
-		ReportController
+		ReportController,
+		PlanningController
 	],
 	providers: [
 		UserService,
@@ -60,7 +63,8 @@ import { ReportService } from './report/report.service';
 		PlaceService,
 		ExerciseGoalsService,
 		ExerciseService,
-		ReportService
+		ReportService,
+		PlanningService
 	],
 })
 export class AppModule {}
