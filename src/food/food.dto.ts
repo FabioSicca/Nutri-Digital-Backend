@@ -1,11 +1,7 @@
-import { IsString, IsInt, IsNotEmpty } from 'class-validator';
+import { IsString, IsInt, IsNotEmpty, IsArray, ArrayNotEmpty, Min } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class FoodDto {
-	@IsInt()
-	@ApiProperty()
-	id: number;
-
 	@IsString()
 	@IsNotEmpty()
 	@ApiProperty()
@@ -22,101 +18,115 @@ export class FoodDto {
 	serving: string;
 
 	@IsInt()
+	@IsNotEmpty()
+	@Min(0)
 	@ApiProperty()
 	calories: number;
 
-	@IsString()
+	@IsInt()
 	@IsNotEmpty()
+	@Min(0)
 	@ApiProperty()
-	href: string;
+	sodium: number;
+
+	@IsInt()
+	@IsNotEmpty()
+	@Min(0)
+	@ApiProperty()
+	total_fat: number;
+
+	@IsInt()
+	@IsNotEmpty()
+	@Min(0)
+	@ApiProperty()
+	potassium: number
+
+	@IsInt()
+	@IsNotEmpty()
+	@Min(0)
+	@ApiProperty()
+	saturated: number;
+
+	@IsInt()
+	@IsNotEmpty()
+	@Min(0)
+	@ApiProperty()
+	total_carbs: number;
+
+	@IsInt()
+	@IsNotEmpty()
+	@Min(0)
+	@ApiProperty()
+	polyunsaturated: number;
+
+	@IsInt()
+	@IsNotEmpty()
+	@Min(0)
+	@ApiProperty()
+	dietary_fiber: number;
+
+	@IsInt()
+	@IsNotEmpty()
+	@Min(0)
+	@ApiProperty()
+	monounsaturated: number;
+
+	@IsInt()
+	@IsNotEmpty()
+	@Min(0)
+	@ApiProperty()
+	sugars: number;
+
+	@IsInt()
+	@IsNotEmpty()
+	@Min(0)
+	@ApiProperty()
+	trans: number;
+
+	@IsInt()
+	@IsNotEmpty()
+	@Min(0)
+	@ApiProperty()
+	protein: number;
+
+	@IsInt()
+	@IsNotEmpty()
+	@Min(0)
+	@ApiProperty()
+	cholesterol: number;
+
+	@IsInt()
+	@IsNotEmpty()
+	@Min(0)
+	@ApiProperty()
+	vitamin_a: number;
+
+	@IsInt()
+	@IsNotEmpty()
+	@Min(0)
+	@ApiProperty()
+	calcium: number;
+
+	@IsInt()
+	@IsNotEmpty()
+	@Min(0)
+	@ApiProperty()
+	vitamin_c: number;
+
+	@IsInt()
+	@IsNotEmpty()
+	@Min(0)
+	@ApiProperty()
+	iron: number;
+
+	@IsArray()
+  @ArrayNotEmpty()
+	@IsString({ each: true })
+	@ApiProperty({ type: [String], description: 'Array of dietary restrictions' })
+	restricciones: string[];
 
 	@IsString()
 	@IsNotEmpty()
 	@ApiProperty()
-	external_id: string;
-
-	@IsString()
-	@IsNotEmpty()
-	@ApiProperty()
-	searchTerm: string;
-
-	@IsString()
-	@IsNotEmpty()
-	@ApiProperty()
-	sodium: string;
-
-	@IsString()
-	@IsNotEmpty()
-	@ApiProperty()
-	total_fat: string;
-
-	@IsString()
-	@IsNotEmpty()
-	@ApiProperty()
-	potassium: string;
-
-	@IsString()
-	@IsNotEmpty()
-	@ApiProperty()
-	saturated: string;
-
-	@IsString()
-	@IsNotEmpty()
-	@ApiProperty()
-	total_carbs: string;
-
-	@IsString()
-	@IsNotEmpty()
-	@ApiProperty()
-	polyunsaturated: string;
-
-	@IsString()
-	@IsNotEmpty()
-	@ApiProperty()
-	dietary_fiber: string;
-
-	@IsString()
-	@IsNotEmpty()
-	@ApiProperty()
-	monounsaturated: string;
-
-	@IsString()
-	@IsNotEmpty()
-	@ApiProperty()
-	sugars: string;
-
-	@IsString()
-	@IsNotEmpty()
-	@ApiProperty()
-	trans: string;
-
-	@IsString()
-	@IsNotEmpty()
-	@ApiProperty()
-	protein: string;
-
-	@IsString()
-	@IsNotEmpty()
-	@ApiProperty()
-	cholesterol: string;
-
-	@IsString()
-	@IsNotEmpty()
-	@ApiProperty()
-	vitamin_a: string;
-
-	@IsString()
-	@IsNotEmpty()
-	@ApiProperty()
-	calcium: string;
-
-	@IsString()
-	@IsNotEmpty()
-	@ApiProperty()
-	vitamin_c: string;
-
-	@IsString()
-	@IsNotEmpty()
-	@ApiProperty()
-	iron: string;
+	tipo: string;
 }
