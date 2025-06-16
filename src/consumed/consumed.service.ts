@@ -1,6 +1,6 @@
 import db from '../config/db.config';
 import { Injectable } from '@nestjs/common';
-import { and, eq } from 'drizzle-orm';
+import { and, eq, gte, lte } from 'drizzle-orm';
 import consumedTable, { Consumed } from './consumed.entity';
 import { ConsumedDto } from './dto/consumed.dto';
 import foodTable from '@/food/food.entity';
@@ -99,6 +99,60 @@ export class ConsumedService {
 		return data;
 	}
 
+	async GetDaysConsumed(userId: number, dateFrom: Date, dateTo: Date) {
+		const result = await db
+			.select({
+				date: consumedTable.date_consumed,
+				count: sql<number>`COUNT(*)`.as('count')
+			})
+			.from(consumedTable)
+			.where(
+				and(
+					eq(consumedTable.id_user, userId),
+					gte(consumedTable.date_consumed, dateFrom),
+					lte(consumedTable.date_consumed, dateTo),
+				)
+			)
+			.groupBy(consumedTable.date_consumed);
+
+		return result.length;
+	}
+
+	async getNutrientsConsumedInterval(userId: number, dateFrom: Date, dateTo: Date) {
+		const [result] = await db
+			.select({
+				calories: sql<number>`SUM(${foodTable.calories})`,
+				total_fat: sql<number>`SUM(${foodTable.total_fat})`,
+				total_carbs: sql<number>`SUM(${foodTable.total_carbs})`,
+				protein: sql<number>`SUM(${foodTable.protein})`,
+				saturated_fat: sql<number>`SUM(${foodTable.saturated})`,
+				polyunsaturated_fat: sql<number>`SUM(${foodTable.polyunsaturated})`,
+				monounsaturated_fat: sql<number>`SUM(${foodTable.monounsaturated})`,
+				trans: sql<number>`SUM(${foodTable.trans})`,
+				cholesterol: sql<number>`SUM(${foodTable.cholesterol})`,
+				sodium: sql<number>`SUM(${foodTable.sodium})`,
+				potassium: sql<number>`SUM(${foodTable.potassium})`,
+				fiber: sql<number>`SUM(${foodTable.dietary_fiber})`,
+				sugar: sql<number>`SUM(${foodTable.sugars})`,
+				vitamin_a: sql<number>`SUM(${foodTable.vitamin_a})`,
+				vitamin_c: sql<number>`SUM(${foodTable.vitamin_c})`,
+				calcium: sql<number>`SUM(${foodTable.calcium})`,
+				iron: sql<number>`SUM(${foodTable.iron})`,
+			})
+			.from(consumedTable)
+			.innerJoin(foodTable, eq(consumedTable.id_food, foodTable.id))
+			.where(
+				and(
+					eq(consumedTable.id_user, userId),
+					gte(consumedTable.date_consumed, dateFrom),
+					lte(consumedTable.date_consumed, dateTo),
+				)
+			);
+
+		return Object.fromEntries(
+			Object.entries(result ?? {}).map(([k, v]) => [k, v ?? 0])
+		);
+	}
 
 	async getNutrientsConsumedByDate(userId: number, date: Date) {
 		const dateOnly = new Date(date.getFullYear(), date.getMonth(), date.getDate());
