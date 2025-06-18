@@ -29,6 +29,8 @@ import { ExerciseController } from './exercise/exercise.controller';
 import { ExerciseService } from './exercise/exercise.service';
 import { ReportController } from './report/report.controller';
 import { ReportService } from './report/report.service';
+import { PlanningController } from './planning/planning.controller';
+import { PlanningService } from './planning/planning.service';
 import { ReminderController } from './reminders/reminders.controller';
 
 @Module({
@@ -50,6 +52,7 @@ import { ReminderController } from './reminders/reminders.controller';
 		ExerciseGoalsController,
 		ExerciseController,
 		ReportController,
+		PlanningController,
 		ReminderController
 	],
 	providers: [
@@ -66,7 +69,8 @@ import { ReminderController } from './reminders/reminders.controller';
 		PlaceService,
 		ExerciseGoalsService,
 		ExerciseService,
-		ReportService
+		ReportService,
+		PlanningService
 	],
 })
 export class AppModule {}
