@@ -70,7 +70,7 @@ export class PlanningService {
                 )
             );
 
-        if (userPlanningMeal.length === 0) throw new Error('Planning not found');
+        if (userPlanningMeal.length === 0) return [];
 
         const macrosPlanningMeal = await this.getFoodForPlanning(userId);
 
@@ -87,11 +87,15 @@ export class PlanningService {
 
     private async getMacrosGoals(userId: number) {
         const nutritionGoals: any[] = await this.nutrientGoalsService.getNutritionGoals(userId);
-        const totalMacros = nutritionGoals.reduce((sum, current) => {
-            return sum + current.total_fat + current.total_carbs + current.protein;
-        }, 0);
+        
+        const response = {
+            total_fat: nutritionGoals.reduce((sum, current) => sum + current.total_fat,0),
+            total_carbs: nutritionGoals.reduce((sum, current) => sum + current.total_carbs,0),
+            protein: nutritionGoals.reduce((sum, current) => sum + current.protein,0),
+            calories: nutritionGoals.reduce((sum, current) => sum + current.calories,0)
+        }
 
-        return totalMacros;
+        return response;
     }
 
     private async getFoodForPlanning(userId: number) {
@@ -104,10 +108,46 @@ export class PlanningService {
                 eq(foodTable.id, planningTable.id_food),
             );
 
-        const totalMacros = planningMealFood.reduce((sum, current) => {
-                return sum + Number(current.planning.portion) * (current.food.total_fat + current.food.total_carbs + current.food.protein);
-        }, 0);
+        const response = {
+            total_fat: planningMealFood.reduce((sum, current) => sum + Number(current.planning.portion) * current.food.total_fat,0),
+            total_carbs: planningMealFood.reduce((sum, current) => sum + Number(current.planning.portion) * current.food.total_carbs,0),
+            protein: planningMealFood.reduce((sum, current) => sum + Number(current.planning.portion) * current.food.protein,0),
+            calories: planningMealFood.reduce((sum, current) => sum + Number(current.planning.portion) * current.food.calories,0)
+        } 
 
-        return totalMacros;
+        return response;
     }
+
+    async deletePlanningMeal(userId: number, foodId: number, day: string) {
+        const result = await db
+            .delete(planningTable)
+            .where(
+                and(
+                    eq(planningTable.id_user, userId),
+                    eq(planningTable.id_food, foodId),
+                    eq(planningTable.day, day)
+                )
+            );
+        if (result.rowCount === 0) throw new Error('No planning meal deleted');
+	}
+
+    async deleteAllPlanningMeal() {
+        const result = await db.delete(planningTable);
+        return { deletedRows: result.rowCount };
+	}
+
+    async updatePlanningMeal(userId: number, foodId: number, day: string, planning: PlanningDto) {
+        const resp = await db
+            .update(planningTable)
+            .set(planning)
+            .where(
+                and(
+                    eq(planningTable.id_user, userId),
+                    eq(planningTable.id_food, foodId),
+                    eq(planningTable.day, day)
+                )
+            )
+            .returning();
+        return resp;
+	}
 }
