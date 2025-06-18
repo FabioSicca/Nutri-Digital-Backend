@@ -75,4 +75,19 @@ export class ExerciseService {
     return deletedExercise;
   }
 
+  async getIfExerciseAlreadyLoadedToday(id_user: number): Promise<boolean> {
+    const today = new Date();
+    const dateOnly = new Date(today.toISOString());
+    const exercises = await db
+      .select()
+      .from(exerciseDoneTable)
+      .where(
+        and(
+          eq(exerciseDoneTable.id_user, id_user),
+          eq(exerciseDoneTable.date, dateOnly),
+        )
+      );
+    return exercises.length > 0;
+  }
+
 }

@@ -12,6 +12,8 @@ import { HidratationController } from './hidratation/hidratation.controller';
 import { HidratationService } from './hidratation/hidratation.service';
 import { ProfessionalController } from './professional/professional.controller';
 import { ProfessionalService } from './professional/professional.service';
+import { ReviewsService } from './professional/reviews.service';
+import { ReviewsController } from './professional/reviews.controller';
 import { PorgressPanelController } from './progress-panel/progress.controller';
 import { RequestService } from './request-professional/request.service';
 import { RequestController } from './request-professional/request.controller';
@@ -29,6 +31,7 @@ import { ReportController } from './report/report.controller';
 import { ReportService } from './report/report.service';
 import { PlanningController } from './planning/planning.controller';
 import { PlanningService } from './planning/planning.service';
+import { ReminderController } from './reminders/reminders.controller';
 
 @Module({
 	imports: [],
@@ -40,6 +43,7 @@ import { PlanningService } from './planning/planning.service';
 		HidratationController,
 		NutrientGoalsController,
 		ProfessionalController,
+		ReviewsController,
 		PorgressPanelController,
 		RequestController,
 		MessagesController,
@@ -48,7 +52,8 @@ import { PlanningService } from './planning/planning.service';
 		ExerciseGoalsController,
 		ExerciseController,
 		ReportController,
-		PlanningController
+		PlanningController,
+		ReminderController
 	],
 	providers: [
 		UserService,
@@ -57,6 +62,7 @@ import { PlanningService } from './planning/planning.service';
 		HidratationService,
 		NutrientGoalsService,
 		ProfessionalService,
+		ReviewsService,
 		RequestService,
 		MessagesService,
 		PatientService,

@@ -1,6 +1,6 @@
 import db from '../config/db.config';
 import { Injectable } from '@nestjs/common';
-import { and, eq } from 'drizzle-orm';
+import { and, eq, gte, lte } from 'drizzle-orm';
 import consumedTable, { Consumed } from './consumed.entity';
 import { ConsumedDto } from './dto/consumed.dto';
 import foodTable from '@/food/food.entity';
@@ -99,29 +99,83 @@ export class ConsumedService {
 		return data;
 	}
 
+	async GetDaysConsumed(userId: number, dateFrom: Date, dateTo: Date) {
+		const result = await db
+			.select({
+				date: consumedTable.date_consumed,
+				count: sql<number>`COUNT(*)`.as('count')
+			})
+			.from(consumedTable)
+			.where(
+				and(
+					eq(consumedTable.id_user, userId),
+					gte(consumedTable.date_consumed, dateFrom),
+					lte(consumedTable.date_consumed, dateTo),
+				)
+			)
+			.groupBy(consumedTable.date_consumed);
+
+		return result.length;
+	}
+
+	async getNutrientsConsumedInterval(userId: number, dateFrom: Date, dateTo: Date) {
+		const [result] = await db
+			.select({
+				calories: sql<number>`SUM(${foodTable.calories} * CAST(${consumedTable.portion} AS INTEGER))`  ,
+				total_fat: sql<number>`SUM(${foodTable.total_fat} * CAST(${consumedTable.portion} AS INTEGER))`,
+				total_carbs: sql<number>`SUM(${foodTable.total_carbs} * CAST(${consumedTable.portion} AS INTEGER))`,
+				protein: sql<number>`SUM(${foodTable.protein} * CAST(${consumedTable.portion} AS INTEGER))`,
+				saturated_fat: sql<number>`SUM(${foodTable.saturated} * CAST(${consumedTable.portion} AS INTEGER))`,
+				polyunsaturated_fat: sql<number>`SUM(${foodTable.polyunsaturated} * CAST(${consumedTable.portion} AS INTEGER))`,
+				monounsaturated_fat: sql<number>`SUM(${foodTable.monounsaturated} * CAST(${consumedTable.portion} AS INTEGER))`,
+				trans: sql<number>`SUM(${foodTable.trans} * CAST(${consumedTable.portion} AS INTEGER))`,
+				cholesterol: sql<number>`SUM(${foodTable.cholesterol} * CAST(${consumedTable.portion} AS INTEGER))`,
+				sodium: sql<number>`SUM(${foodTable.sodium} * CAST(${consumedTable.portion} AS INTEGER))`,
+				potassium: sql<number>`SUM(${foodTable.potassium} * CAST(${consumedTable.portion} AS INTEGER))`,
+				fiber: sql<number>`SUM(${foodTable.dietary_fiber} * CAST(${consumedTable.portion} AS INTEGER))`,
+				sugar: sql<number>`SUM(${foodTable.sugars} * CAST(${consumedTable.portion} AS INTEGER))`,
+				vitamin_a: sql<number>`SUM(${foodTable.vitamin_a} * CAST(${consumedTable.portion} AS INTEGER))`,
+				vitamin_c: sql<number>`SUM(${foodTable.vitamin_c} * CAST(${consumedTable.portion} AS INTEGER))`,
+				calcium: sql<number>`SUM(${foodTable.calcium} * CAST(${consumedTable.portion} AS INTEGER))`,
+				iron: sql<number>`SUM(${foodTable.iron} * CAST(${consumedTable.portion} AS INTEGER))`,
+			})
+			.from(consumedTable)
+			.innerJoin(foodTable, eq(consumedTable.id_food, foodTable.id))
+			.where(
+				and(
+					eq(consumedTable.id_user, userId),
+					gte(consumedTable.date_consumed, dateFrom),
+					lte(consumedTable.date_consumed, dateTo),
+				)
+			);
+
+		return Object.fromEntries(
+			Object.entries(result ?? {}).map(([k, v]) => [k, v ?? 0])
+		);
+	}
 
 	async getNutrientsConsumedByDate(userId: number, date: Date) {
 		const dateOnly = new Date(date.getFullYear(), date.getMonth(), date.getDate());
 
 		const [result] = await db
 			.select({
-				calories: sql<number>`SUM(${foodTable.calories})`,
-				total_fat: sql<number>`SUM(${foodTable.total_fat})`,
-				total_carbs: sql<number>`SUM(${foodTable.total_carbs})`,
-				protein: sql<number>`SUM(${foodTable.protein})`,
-				saturated_fat: sql<number>`SUM(${foodTable.saturated})`,
-				polyunsaturated_fat: sql<number>`SUM(${foodTable.polyunsaturated})`,
-				monounsaturated_fat: sql<number>`SUM(${foodTable.monounsaturated})`,
-				trans: sql<number>`SUM(${foodTable.trans})`,
-				cholesterol: sql<number>`SUM(${foodTable.cholesterol})`,
-				sodium: sql<number>`SUM(${foodTable.sodium})`,
-				potassium: sql<number>`SUM(${foodTable.potassium})`,
-				fiber: sql<number>`SUM(${foodTable.dietary_fiber})`,
-				sugar: sql<number>`SUM(${foodTable.sugars})`,
-				vitamin_a: sql<number>`SUM(${foodTable.vitamin_a})`,
-				vitamin_c: sql<number>`SUM(${foodTable.vitamin_c})`,
-				calcium: sql<number>`SUM(${foodTable.calcium})`,
-				iron: sql<number>`SUM(${foodTable.iron})`,
+				calories: sql<number>`SUM(${foodTable.calories} * CAST(${consumedTable.portion} AS INTEGER))`,
+				total_fat: sql<number>`SUM(${foodTable.total_fat} * CAST(${consumedTable.portion} AS INTEGER))`,
+				total_carbs: sql<number>`SUM(${foodTable.total_carbs} * CAST(${consumedTable.portion} AS INTEGER))`,
+				protein: sql<number>`SUM(${foodTable.protein} * CAST(${consumedTable.portion} AS INTEGER))`,
+				saturated_fat: sql<number>`SUM(${foodTable.saturated} * CAST(${consumedTable.portion} AS INTEGER))`,
+				polyunsaturated_fat: sql<number>`SUM(${foodTable.polyunsaturated} * CAST(${consumedTable.portion} AS INTEGER))`,
+				monounsaturated_fat: sql<number>`SUM(${foodTable.monounsaturated} * CAST(${consumedTable.portion} AS INTEGER))`,
+				trans: sql<number>`SUM(${foodTable.trans} * CAST(${consumedTable.portion} AS INTEGER))`,
+				cholesterol: sql<number>`SUM(${foodTable.cholesterol} * CAST(${consumedTable.portion} AS INTEGER))`,
+				sodium: sql<number>`SUM(${foodTable.sodium} * CAST(${consumedTable.portion} AS INTEGER))`,
+				potassium: sql<number>`SUM(${foodTable.potassium} * CAST(${consumedTable.portion} AS INTEGER))`,
+				fiber: sql<number>`SUM(${foodTable.dietary_fiber} * CAST(${consumedTable.portion} AS INTEGER))`,
+				sugar: sql<number>`SUM(${foodTable.sugars} * CAST(${consumedTable.portion} AS INTEGER))`,
+				vitamin_a: sql<number>`SUM(${foodTable.vitamin_a} * CAST(${consumedTable.portion} AS INTEGER))`,
+				vitamin_c: sql<number>`SUM(${foodTable.vitamin_c} * CAST(${consumedTable.portion} AS INTEGER))`,
+				calcium: sql<number>`SUM(${foodTable.calcium} * CAST(${consumedTable.portion} AS INTEGER))`,
+				iron: sql<number>`SUM(${foodTable.iron} * CAST(${consumedTable.portion} AS INTEGER))`,
 			})
 			.from(consumedTable)
 			.innerJoin(foodTable, eq(consumedTable.id_food, foodTable.id))
@@ -136,4 +190,22 @@ export class ConsumedService {
 			Object.entries(result ?? {}).map(([k, v]) => [k, v ?? 0])
 		);
 	}
+
+	async getIfConsumedAlreadyLoadedToday(id_user: number): Promise<boolean> {
+		const today = new Date();
+		const dateOnly = new Date(today.toISOString());
+
+		const result = await db
+			.select()
+			.from(consumedTable)
+			.where(
+				and(
+					eq(consumedTable.id_user, id_user),
+					eq(consumedTable.date_consumed, dateOnly),
+				),
+			);
+
+		return result.length > 0;
+	}
+
 }
