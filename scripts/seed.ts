@@ -13,7 +13,11 @@ const db = drizzle(pool);
 async function seed() {
   console.log('🌱 Seeding database...');
 
-  await db.insert(usersTable).values([
+  await db.execute(
+    `ALTER SEQUENCE users_id_seq RESTART WITH 1;`
+  );
+
+  const res = await db.insert(usersTable).values([
     // MEDICOS 
     {
       user: 'eze',
