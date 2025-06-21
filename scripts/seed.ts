@@ -22,7 +22,7 @@ async function seed() {
     {
       user: 'eze',
       name: 'Ezequiel',
-      lastname: 'Ayuda',
+      lastname: 'Diaz',
       password: '1234',
       role: 'medic',
     },
@@ -33,18 +33,18 @@ async function seed() {
       password: '1234',
       role: 'medic',
     },
+    {
+      user: 'alex',
+      name: 'Alex',
+      lastname: 'Gonzalez',
+      password: '1234',
+      role: 'medic',
+    },
     // USUARIOS
     {
       user: 'santi',
       name: 'Santiago',
       lastname: 'Scooby',
-      password: '1234',
-      role: 'usuario',
-    },
-    {
-      user: 'alex',
-      name: 'Alex',
-      lastname: 'Gonzalez',
       password: '1234',
       role: 'usuario',
     },

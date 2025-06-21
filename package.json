@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "seed:user": "ts-node scripts/seed.ts",
+    "seed:prof": "ts-node scripts/seedProfessionals.ts",
     "seed:food": "ts-node scripts/seedFood.ts",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
