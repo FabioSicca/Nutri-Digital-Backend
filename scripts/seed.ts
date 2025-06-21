@@ -14,20 +14,50 @@ async function seed() {
   console.log('🌱 Seeding database...');
 
   await db.insert(usersTable).values([
+    // MEDICOS 
     {
-      user: 'admin',
+      user: 'eze',
+      name: 'Ezequiel',
+      lastname: 'Ayuda',
+      password: '1234',
+      role: 'medic',
+    },
+    {
+      user: 'franz',
+      name: 'Franz',
+      lastname: 'Perez',
+      password: '1234',
+      role: 'medic',
+    },
+    // USUARIOS
+    {
+      user: 'santi',
       name: 'Santiago',
       lastname: 'Scooby',
       password: '1234',
-      role: 'regular',
+      role: 'usuario',
     },
     {
-      user: 'medic',
-      name: 'Ezequiel',
-      lastname: 'Bilardo',
+      user: 'alex',
+      name: 'Alex',
+      lastname: 'Gonzalez',
       password: '1234',
-      role: 'medic',
-    }
+      role: 'usuario',
+    },
+    {
+      user: 'fabio',
+      name: 'Fabio',
+      lastname: 'Rodriguez',
+      password: '1234',
+      role: 'usuario',
+    },
+    {
+      user: 'ian',
+      name: 'Ian',
+      lastname: 'Romero',
+      password: '1234',
+      role: 'usuario',
+    },
   ]);
 
   console.log('✅ Users inserted successfully.');
