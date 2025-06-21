@@ -1,50 +1,219 @@
 import foodTable from '../src/food/food.entity';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
-import * as fs from 'fs';
-import * as path from 'path';
 
-async function loadFoodData() {
-    try {
-        const pool = new Pool({
-            connectionString: process.env.DATABASE_URL ?? 'postgres://postgres:123456@localhost:5432/nutridigitaldb',
-          });
-        const filePath = path.join(__dirname, './alimentos.json');
-        const db = drizzle(pool);
-        const fileContent = fs.readFileSync(filePath, 'utf-8');
-        const foodData = JSON.parse(fileContent);
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL ?? 'postgres://postgres:123456@localhost:5432/nutridigitaldb',
+});
 
-        for (const food of foodData) {
-            await db.insert(foodTable).values({
-                name: food.name.toLowerCase(),
-                brand: food.brand,
-                calories: food.calories || 0,
-                href: food.href || '',
-                sodium: food.Sodium || 0,
-                total_fat: food['Total Fat'] || 0,
-                potassium: food.Potassium || 0,
-                saturated: food.Saturated || 0,
-                total_carbs: food['Total Carbs'] || 0,
-                polyunsaturated: food.Polyunsaturated || 0,
-                dietary_fiber: food['Dietary Fiber'] || 0,
-                monounsaturated: food.Monounsaturated || 0,
-                sugars: food.Sugars || 0,
-                trans: food.Trans || 0,
-                protein: food.Protein || 0,
-                cholesterol: food.Cholesterol || 0,
-                vitamin_a: food['Vitamin A'] || 0,
-                calcium: food.Calcium || 0,
-                vitamin_c: food['Vitamin C'] || 0,
-                iron: food.Iron || 0,
-                restricciones: food.Restriccion || '',
-                tipo: food.Tipo || '',
-            });
-        }
+const db = drizzle(pool);
 
-        console.log('Datos cargados exitosamente en la tabla food.');
-    } catch (error) {
-        console.error('Error al cargar los datos:', error);
-    }
+async function seedFoods() {
+
+    await db.execute(
+        `ALTER SEQUENCE food_id_seq RESTART WITH 1;`
+    );
+
+    await db.insert(foodTable).values([
+        {
+            name: "Manzana (200 g)",
+            brand: "Frutas del Valle",
+            href: "",
+            calories: 122,
+            total_fat: 0,
+            saturated: 0,
+            polyunsaturated: 0,
+            monounsaturated: 0,
+            trans: 0,
+            cholesterol: 0,
+            sodium: 0,
+            potassium: 208,
+            total_carbs: 30,
+            dietary_fiber: 4,
+            sugars: 24,
+            protein: 0,
+            vitamin_a: 0,
+            vitamin_c: 0,
+            calcium: 0,
+            iron: 0,
+            restricciones: "Vegetariano, Vegano",
+            tipo: "Fruta",
+        },
+        {
+            name: "Banana (150 g)",
+            brand: "Frutas del Valle",
+            href: "",
+            calories: 134,
+            total_fat: 3,
+            saturated: 1,
+            polyunsaturated: 1,
+            monounsaturated: 1,
+            trans: 0,
+            cholesterol: 0,
+            sodium: 2,
+            potassium: 537,
+            total_carbs: 34,
+            dietary_fiber: 4,
+            sugars: 18,
+            protein: 2,
+            vitamin_a: 0,
+            vitamin_c: 0,
+            calcium: 0,
+            iron: 0,
+            restricciones: "Vegetariano, Vegano",
+            tipo: "Fruta",
+        },
+        {
+            name: "Cafe (200 ml)",
+            brand: "Nescafe",
+            href: "",
+            calories: 74,
+            total_fat: 2,
+            saturated: 1,
+            polyunsaturated: 0,
+            monounsaturated: 0,
+            trans: 0,
+            cholesterol: 1,
+            sodium: 76,
+            potassium: 0,
+            total_carbs: 13,
+            dietary_fiber: 1,
+            sugars: 10,
+            protein: 2,
+            vitamin_a: 0,
+            vitamin_c: 0,
+            calcium: 0,
+            iron: 0,
+            restricciones: "Vegetariano, Vegano",
+            tipo: "Bebida",
+        },
+        {
+            name: "Medialuna (50 g)",
+            brand: "Panaderia",
+            href: "",
+            calories: 158,
+            total_fat: 7,
+            saturated: 2,
+            polyunsaturated: 0,
+            monounsaturated: 0,
+            trans: 2,
+            cholesterol: 0,
+            sodium: 47,
+            potassium: 0,
+            total_carbs: 20,
+            dietary_fiber: 1,
+            sugars: 5,
+            protein: 2,
+            vitamin_a: 0,
+            vitamin_c: 0,
+            calcium: 0,
+            iron: 0,
+            restricciones: "",
+            tipo: "Comida",
+        },
+        {
+            name: "Cerveza (1000 ml)",
+            brand: "Patagonia",
+            href: "",
+            calories: 197,
+            total_fat: 0,
+            saturated: 0,
+            polyunsaturated: 0,
+            monounsaturated: 0,
+            trans: 0,
+            cholesterol: 0,
+            sodium: 17,
+            potassium: 85,
+            total_carbs: 7,
+            dietary_fiber: 0,
+            sugars: 1,
+            protein: 1,
+            vitamin_a: 0,
+            vitamin_c: 0,
+            calcium: 0,
+            iron: 0,
+            restricciones: "",
+            tipo: "Bebida",
+        },
+        {
+            name: "Chocolate (40 g)",
+            brand: "Bagley",
+            href: "",
+            calories: 200,
+            total_fat: 11,
+            saturated: 7,
+            polyunsaturated: 0,
+            monounsaturated: 0,
+            trans: 0,
+            cholesterol: 5,
+            sodium: 5,
+            potassium: 0,
+            total_carbs: 25,
+            dietary_fiber: 2,
+            sugars: 20,
+            protein: 0,
+            vitamin_a: 0,
+            vitamin_c: 0,
+            calcium: 0,
+            iron: 0,
+            restricciones: "",
+            tipo: "Comida",
+        },
+        {
+            name: "Coca Cola (355 ml)",
+            brand: "Coca Cola",
+            href: "",
+            calories: 140,
+            total_fat: 0,
+            saturated: 0,
+            polyunsaturated: 0,
+            monounsaturated: 0,
+            trans: 0,
+            cholesterol: 5,
+            sodium: 45,
+            potassium: 0,
+            total_carbs: 39,
+            dietary_fiber: 0,
+            sugars: 39,
+            protein: 0,
+            vitamin_a: 0,
+            vitamin_c: 0,
+            calcium: 0,
+            iron: 0,
+            restricciones: "",
+            tipo: "Bebida",
+        },
+        {
+            name: "Hamburguesa (250 g)",
+            brand: "Paty",
+            href: "",
+            calories: 516,
+            total_fat: 25,
+            saturated: 8,
+            polyunsaturated: 5,
+            monounsaturated: 9,
+            trans: 1,
+            cholesterol: 92,
+            sodium: 712,
+            potassium: 835,
+            total_carbs: 38,
+            dietary_fiber: 5,
+            sugars: 10,
+            protein: 35,
+            vitamin_a: 0,
+            vitamin_c: 0,
+            calcium: 0,
+            iron: 0,
+            restricciones: "",
+            tipo: "Comida",
+        },
+    ]);
+
+    console.log('✅ Food inserted successfully.');
+    await pool.end();
 }
 
-loadFoodData();
+seedFoods().catch((err) => {
+    console.error('❌ Error inserting seed data:', err);
+    pool.end();
+});
