@@ -63,7 +63,7 @@ async function seedExercises() {
       name: "baloncesto",
     }
   ]);
-  console.log('✅ Food inserted successfully.');
+  console.log('✅ Exercises inserted successfully.');
   await pool.end();
 }
 
