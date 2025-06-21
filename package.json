@@ -14,6 +14,7 @@
     "seed:reviews": "ts-node scripts/seedReviews.ts",
     "seed:hidratation": "ts-node scripts/seedHidratation.ts",
     "seed:consumed": "ts-node scripts/seedConsumed",
+    "seed:places": "ts-node scripts/seedPlaces.ts",
     "seed:all": "npm run seed:user && npm run seed:prof && npm run seed:food && npm run seed:goals && npm run seed:exercises && npm run seed:exercisesDone && npm run seed:reviews && npm run seed:hidratation && npm run seed:consumed",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
