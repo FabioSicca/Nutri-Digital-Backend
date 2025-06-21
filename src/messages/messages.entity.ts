@@ -1,6 +1,6 @@
 import { InferSelectModel } from 'drizzle-orm';
 import { pgTable, serial, varchar, integer } from 'drizzle-orm/pg-core';
-import usersTable from '@/user/user.entity';
+import usersTable from '../user/user.entity';
 
 export const messagesTable = pgTable('messages', {
 	id: serial('id').primaryKey().notNull(),

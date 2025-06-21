@@ -1,5 +1,5 @@
-import professionalTable from '@/professional/professional.entity';
-import usersTable from '@/user/user.entity';
+import professionalTable from '../professional/professional.entity';
+import usersTable from '../user/user.entity';
 import { InferSelectModel } from 'drizzle-orm';
 import {
     pgTable,

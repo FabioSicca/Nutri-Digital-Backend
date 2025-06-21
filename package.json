@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "seed:del": "ts-node scripts/seedDelete.ts",
     "seed:user": "ts-node scripts/seedUsers.ts",
     "seed:prof": "ts-node scripts/seedProfessionals.ts",
     "seed:food": "ts-node scripts/seedFood.ts",

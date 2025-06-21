@@ -5,10 +5,8 @@ import {
 	pgTable,
 	varchar,
 	serial,
-	timestamp,
 	integer,
 	bigint,
-	foreignKey,
 	date,
 } from 'drizzle-orm/pg-core';
 
