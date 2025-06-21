@@ -1,0 +1,1114 @@
+{
+  "id": "bffcccce-3c1c-416e-81f3-700d1bb24797",
+  "prevId": "c4cb05f1-7a25-47e6-b7c9-810e4fa4f181",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.consumed": {
+      "name": "consumed",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "portion": {
+          "name": "portion",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "unit": {
+          "name": "unit",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "type_of_food": {
+          "name": "type_of_food",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fecha": {
+          "name": "fecha",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id_user": {
+          "name": "id_user",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id_food": {
+          "name": "id_food",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "consumed_id_user_users_id_fk": {
+          "name": "consumed_id_user_users_id_fk",
+          "tableFrom": "consumed",
+          "tableTo": "users",
+          "columnsFrom": [
+            "id_user"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "consumed_id_food_food_id_fk": {
+          "name": "consumed_id_food_food_id_fk",
+          "tableFrom": "consumed",
+          "tableTo": "food",
+          "columnsFrom": [
+            "id_food"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.exercise_goals": {
+      "name": "exercise_goals",
+      "schema": "",
+      "columns": {
+        "id_user": {
+          "name": "id_user",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "calories_burned_goal": {
+          "name": "calories_burned_goal",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "exercise_goals_id_user_users_id_fk": {
+          "name": "exercise_goals_id_user_users_id_fk",
+          "tableFrom": "exercise_goals",
+          "tableTo": "users",
+          "columnsFrom": [
+            "id_user"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.exercise_done": {
+      "name": "exercise_done",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "id_user": {
+          "name": "id_user",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id_exercise_type": {
+          "name": "id_exercise_type",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "calories_burned": {
+          "name": "calories_burned",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "date": {
+          "name": "date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "exercise_done_id_user_users_id_fk": {
+          "name": "exercise_done_id_user_users_id_fk",
+          "tableFrom": "exercise_done",
+          "tableTo": "users",
+          "columnsFrom": [
+            "id_user"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "exercise_done_id_exercise_type_exercise_types_id_fk": {
+          "name": "exercise_done_id_exercise_type_exercise_types_id_fk",
+          "tableFrom": "exercise_done",
+          "tableTo": "exercise_types",
+          "columnsFrom": [
+            "id_exercise_type"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.exercise_types": {
+      "name": "exercise_types",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.food": {
+      "name": "food",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "brand": {
+          "name": "brand",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "calories": {
+          "name": "calories",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "href": {
+          "name": "href",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sodium": {
+          "name": "sodium",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "total_fat": {
+          "name": "total_fat",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "potassium": {
+          "name": "potassium",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "saturated": {
+          "name": "saturated",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "total_carbs": {
+          "name": "total_carbs",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "polyunsaturated": {
+          "name": "polyunsaturated",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "dietary_fiber": {
+          "name": "dietary_fiber",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monounsaturated": {
+          "name": "monounsaturated",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sugars": {
+          "name": "sugars",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "trans": {
+          "name": "trans",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "protein": {
+          "name": "protein",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "cholesterol": {
+          "name": "cholesterol",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "vitamin_a": {
+          "name": "vitamin_a",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "calcium": {
+          "name": "calcium",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "vitamin_c": {
+          "name": "vitamin_c",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "iron": {
+          "name": "iron",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "restricciones": {
+          "name": "restricciones",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tipo": {
+          "name": "tipo",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.hidratate": {
+      "name": "hidratate",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "id_user": {
+          "name": "id_user",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mililiters": {
+          "name": "mililiters",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fecha": {
+          "name": "fecha",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "hidratate_id_user_users_id_fk": {
+          "name": "hidratate_id_user_users_id_fk",
+          "tableFrom": "hidratate",
+          "tableTo": "users",
+          "columnsFrom": [
+            "id_user"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.messages": {
+      "name": "messages",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "sender_user_id": {
+          "name": "sender_user_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "recipient_user_id": {
+          "name": "recipient_user_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "text_content": {
+          "name": "text_content",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "messages_sender_user_id_users_id_fk": {
+          "name": "messages_sender_user_id_users_id_fk",
+          "tableFrom": "messages",
+          "tableTo": "users",
+          "columnsFrom": [
+            "sender_user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "messages_recipient_user_id_users_id_fk": {
+          "name": "messages_recipient_user_id_users_id_fk",
+          "tableFrom": "messages",
+          "tableTo": "users",
+          "columnsFrom": [
+            "recipient_user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.micronutrient_goals": {
+      "name": "micronutrient_goals",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "id_user": {
+          "name": "id_user",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "saturated_fat": {
+          "name": "saturated_fat",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "polyunsaturated_fat": {
+          "name": "polyunsaturated_fat",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "monounsaturated_fat": {
+          "name": "monounsaturated_fat",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "trans": {
+          "name": "trans",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cholesterol": {
+          "name": "cholesterol",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sodium": {
+          "name": "sodium",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "potassium": {
+          "name": "potassium",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "fiber": {
+          "name": "fiber",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sugar": {
+          "name": "sugar",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "vitamin_a": {
+          "name": "vitamin_a",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "vitamin_c": {
+          "name": "vitamin_c",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "calcium": {
+          "name": "calcium",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "iron": {
+          "name": "iron",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "micronutrient_goals_id_user_users_id_fk": {
+          "name": "micronutrient_goals_id_user_users_id_fk",
+          "tableFrom": "micronutrient_goals",
+          "tableTo": "users",
+          "columnsFrom": [
+            "id_user"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.nutrition_goals": {
+      "name": "nutrition_goals",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "id_user": {
+          "name": "id_user",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "calories": {
+          "name": "calories",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "total_fat": {
+          "name": "total_fat",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "total_carbs": {
+          "name": "total_carbs",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "protein": {
+          "name": "protein",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "nutrition_goals_id_user_users_id_fk": {
+          "name": "nutrition_goals_id_user_users_id_fk",
+          "tableFrom": "nutrition_goals",
+          "tableTo": "users",
+          "columnsFrom": [
+            "id_user"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.place": {
+      "name": "place",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "direction": {
+          "name": "direction",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "category": {
+          "name": "category",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "href": {
+          "name": "href",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.planning": {
+      "name": "planning",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "portion": {
+          "name": "portion",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name_food": {
+          "name": "name_food",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "day": {
+          "name": "day",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fecha": {
+          "name": "fecha",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id_user": {
+          "name": "id_user",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id_food": {
+          "name": "id_food",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "planning_id_user_users_id_fk": {
+          "name": "planning_id_user_users_id_fk",
+          "tableFrom": "planning",
+          "tableTo": "users",
+          "columnsFrom": [
+            "id_user"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "planning_id_food_food_id_fk": {
+          "name": "planning_id_food_food_id_fk",
+          "tableFrom": "planning",
+          "tableTo": "food",
+          "columnsFrom": [
+            "id_food"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.professional": {
+      "name": "professional",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "specialty": {
+          "name": "specialty",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "professional_id_users_id_fk": {
+          "name": "professional_id_users_id_fk",
+          "tableFrom": "professional",
+          "tableTo": "users",
+          "columnsFrom": [
+            "id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.reviews": {
+      "name": "reviews",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "professional_id": {
+          "name": "professional_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "score": {
+          "name": "score",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "comment": {
+          "name": "comment",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "review_date": {
+          "name": "review_date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "reviews_user_id_users_id_fk": {
+          "name": "reviews_user_id_users_id_fk",
+          "tableFrom": "reviews",
+          "tableTo": "users",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "reviews_professional_id_professional_id_fk": {
+          "name": "reviews_professional_id_professional_id_fk",
+          "tableFrom": "reviews",
+          "tableTo": "professional",
+          "columnsFrom": [
+            "professional_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.patient": {
+      "name": "patient",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "id_user": {
+          "name": "id_user",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id_professional": {
+          "name": "id_professional",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "patient_id_user_users_id_fk": {
+          "name": "patient_id_user_users_id_fk",
+          "tableFrom": "patient",
+          "tableTo": "users",
+          "columnsFrom": [
+            "id_user"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "patient_id_professional_professional_id_fk": {
+          "name": "patient_id_professional_professional_id_fk",
+          "tableFrom": "patient",
+          "tableTo": "professional",
+          "columnsFrom": [
+            "id_professional"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.request": {
+      "name": "request",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "id_user": {
+          "name": "id_user",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id_professional": {
+          "name": "id_professional",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "state": {
+          "name": "state",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "request_id_user_users_id_fk": {
+          "name": "request_id_user_users_id_fk",
+          "tableFrom": "request",
+          "tableTo": "users",
+          "columnsFrom": [
+            "id_user"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "request_id_professional_professional_id_fk": {
+          "name": "request_id_professional_professional_id_fk",
+          "tableFrom": "request",
+          "tableTo": "professional",
+          "columnsFrom": [
+            "id_professional"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.users": {
+      "name": "users",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "user": {
+          "name": "user",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "lastname": {
+          "name": "lastname",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "password": {
+          "name": "password",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "role": {
+          "name": "role",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "user_unique": {
+          "name": "user_unique",
+          "columns": [
+            {
+              "expression": "user",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
