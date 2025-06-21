@@ -17,7 +17,7 @@ async function seed() {
     `ALTER SEQUENCE users_id_seq RESTART WITH 1;`
   );
 
-  const res = await db.insert(usersTable).values([
+  await db.insert(usersTable).values([
     // MEDICOS 
     {
       user: 'eze',
