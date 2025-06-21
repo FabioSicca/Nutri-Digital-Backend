@@ -10,7 +10,7 @@ export default {
 		database: process.env.DB_DATABASE || 'nutridigitaldb',
 		password: process.env.DB_PASSWORD || '123456',
 		port: 5432,
-		ssl: true,
+		ssl: process.env.DB_SSL == "true" ? true : false,
 	},
 	verbose: true,
 	strict: true,
