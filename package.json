@@ -9,6 +9,7 @@
     "seed:food": "ts-node scripts/seedFood.ts",
     "seed:goals": "ts-node scripts/seedGoals.ts",
     "seed:exercises": "ts-node scripts/seedExercises.ts",
+    "seed:exercisesDone": "ts-node scripts/seedExercisesDone.ts",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "prettier:check": "prettier --check \"src/**/*.ts\" \"test/**/*.ts\"",
