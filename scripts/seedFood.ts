@@ -18,7 +18,7 @@ async function seedFoods() {
         {
             name: "Manzana (200 g)",
             brand: "Frutas del Valle",
-            href: "",
+            href: "https://media.istockphoto.com/id/1849310621/es/foto/osch%C3%B6nheit-perfektion-ne-apple-a-day.webp?b=1&s=612x612&w=0&k=20&c=n0436pZ0BKQDeh6xkzyOSIpBprq6SvSM17Mk-MeIRss=",
             calories: 122,
             total_fat: 0,
             saturated: 0,
@@ -42,7 +42,7 @@ async function seedFoods() {
         {
             name: "Banana (150 g)",
             brand: "Frutas del Valle",
-            href: "",
+            href: "https://media.istockphoto.com/id/2175529470/es/foto/racimo-de-pl%C3%A1tano-por-palabra.webp?b=1&s=612x612&w=0&k=20&c=IE_uUJVr7dbpIA4lw-epXNrhNXwfJix1cMNOoEUJdiA=",
             calories: 134,
             total_fat: 3,
             saturated: 1,
@@ -66,7 +66,7 @@ async function seedFoods() {
         {
             name: "Cafe (200 ml)",
             brand: "Nescafe",
-            href: "",
+            href: "https://cdn.pixabay.com/photo/2015/05/07/13/46/cappuccino-756490_640.jpg",
             calories: 74,
             total_fat: 2,
             saturated: 1,
@@ -90,7 +90,7 @@ async function seedFoods() {
         {
             name: "Medialuna (50 g)",
             brand: "Panaderia",
-            href: "",
+            href: "https://www.nunziopanificadora.com/wp-content/uploads/2020/05/medialuna-dulce.jpg",
             calories: 158,
             total_fat: 7,
             saturated: 2,
@@ -113,8 +113,8 @@ async function seedFoods() {
         },
         {
             name: "Cerveza (1000 ml)",
-            brand: "Patagonia",
-            href: "",
+            brand: "Quilmes",
+            href: "https://static.wixstatic.com/media/d2b1c5_252fb740d86f4fee93b9d1e907648a7f~mv2_d_1728_1928_s_2.png/v1/fill/w_480,h_536,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/d2b1c5_252fb740d86f4fee93b9d1e907648a7f~mv2_d_1728_1928_s_2.png",
             calories: 197,
             total_fat: 0,
             saturated: 0,
@@ -137,8 +137,8 @@ async function seedFoods() {
         },
         {
             name: "Chocolate (40 g)",
-            brand: "Bagley",
-            href: "",
+            brand: "Arcor",
+            href: "https://molti.com.ar/wp-content/uploads/2020/08/CHO-BCO-8-GR.jpg",
             calories: 200,
             total_fat: 11,
             saturated: 7,
@@ -160,9 +160,9 @@ async function seedFoods() {
             tipo: "Comida",
         },
         {
-            name: "Coca Cola (355 ml)",
+            name: "Coca Cola (500 ml)",
             brand: "Coca Cola",
-            href: "",
+            href: "https://jumboargentina.vtexassets.com/arquivos/ids/782824-800-600?v=638206689771200000&width=800&height=600&aspect=true",
             calories: 140,
             total_fat: 0,
             saturated: 0,
@@ -186,7 +186,7 @@ async function seedFoods() {
         {
             name: "Hamburguesa (250 g)",
             brand: "Paty",
-            href: "",
+            href: "https://img.hogar.mapfre.es/wp-content/uploads/2018/09/hamburguesa-sencilla.jpg",
             calories: 516,
             total_fat: 25,
             saturated: 8,
@@ -209,8 +209,8 @@ async function seedFoods() {
         },
         {
             name: "Yogur descremado (200 g)",
-            brand: "La Serenísima",
-            href: "",
+            brand: "Milkaut",
+            href: "https://d1on8qs0xdu5jz.cloudfront.net/webapp/images/productos/b/0000007000/7359.jpg",
             calories: 120,
             total_fat: 2,
             saturated: 1,
@@ -234,7 +234,7 @@ async function seedFoods() {
         {
             name: "Pollo a la plancha (150 g)",
             brand: "Granja Campo",
-            href: "",
+            href: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2irY3g-ROvN-AwI-Fr-6FoKd5VGet8QN7cw&s",
             calories: 275,
             total_fat: 8,
             saturated: 2,
@@ -258,7 +258,7 @@ async function seedFoods() {
         {
             name: "Pan integral (2 rebanadas)",
             brand: "Fargo",
-            href: "",
+            href: "https://www.infobae.com/resizer/v2/PK77XOCX4ZAVFI5AUF3DZRBJNY.jpg?auth=76e68dbb00155c439af1eac05a63dda69fdeef55b11e7a7a33353066e2844d20&smart=true&width=350&height=197&quality=85",
             calories: 140,
             total_fat: 2,
             saturated: 0,
@@ -282,7 +282,7 @@ async function seedFoods() {
         {
             name: "Huevo duro (1 unidad)",
             brand: "Granja Los Pinos",
-            href: "",
+            href: "https://images.cookforyourlife.org/wp-content/uploads/2020/06/Hard-Boiled-Eggs-shutterstock_451345444.jpg",
             calories: 78,
             total_fat: 5,
             saturated: 2,
@@ -306,7 +306,7 @@ async function seedFoods() {
         {
             name: "Galletitas de agua (30 g)",
             brand: "Aguila",
-            href: "",
+            href: "https://www.nutricionyentrenamiento.fit/images/alimento/397.jpg",
             calories: 135,
             total_fat: 5,
             saturated: 1,
@@ -330,7 +330,7 @@ async function seedFoods() {
         {
             name: "Tostadas con mermelada (2 unidades)",
             brand: "Caseras",
-            href: "",
+            href: "https://www.justspices.es/media/recipe/Mix_Tostadas_Dulces_Tostada_dulce_con_mermelada_de_frambuesa-2.jpg",
             calories: 180,
             total_fat: 3,
             saturated: 1,
@@ -354,7 +354,7 @@ async function seedFoods() {
         {
             name: "Ensalada mixta (300 g)",
             brand: "Natural Fresh",
-            href: "",
+            href: "https://www.clarin.com/img/2023/01/25/QQGYRANYD_1200x630__1.jpg",
             calories: 95,
             total_fat: 4,
             saturated: 1,
@@ -378,7 +378,7 @@ async function seedFoods() {
         {
             name: "Barrita de cereal (1 unidad)",
             brand: "Cereal Mix",
-            href: "",
+            href: "https://arcorencasa.com/wp-content/uploads/2024/10/20241009-3786.webp",
             calories: 98,
             total_fat: 3,
             saturated: 1,
@@ -402,7 +402,7 @@ async function seedFoods() {
         {
             name: "Té con leche (250 ml)",
             brand: "La Virginia",
-            href: "",
+            href: "https://i0.wp.com/elclubdelte.com/wp-content/uploads/2020/02/IMG_0253.jpeg?fit=712%2C475&ssl=1",
             calories: 75,
             total_fat: 2,
             saturated: 1,
@@ -426,7 +426,7 @@ async function seedFoods() {
         {
             name: "Sopa de verduras (300 ml)",
             brand: "Knorr",
-            href: "",
+            href: "https://assets.unileversolutions.com/v1/87490005.png",
             calories: 110,
             total_fat: 3,
             saturated: 1,
@@ -450,7 +450,7 @@ async function seedFoods() {
         {
             name: "Guiso de lentejas (250 g)",
             brand: "Caserito",
-            href: "",
+            href: "https://resizer.glanacion.com/resizer/v2/guiso-de-lentejas-listo-en-15-HTNGFWAUH5GKJLMJVJH3NMMSDU.jpg?auth=1f45cc238ba9ce467d17eeae0635e2fc40ce0bb5e97c81cf1e2fffa619c6ee9e&width=880&height=586&quality=70&smart=true",
             calories: 310,
             total_fat: 7,
             saturated: 1,
@@ -474,7 +474,7 @@ async function seedFoods() {
         {
             name: "Pizza muzzarella (1 porción)",
             brand: "Pizzería Don Luis",
-            href: "",
+            href: "https://super-uno.com.ar/wp-content/uploads/2024/05/pizza-jpg.webp",
             calories: 290,
             total_fat: 12,
             saturated: 5,
@@ -498,7 +498,7 @@ async function seedFoods() {
         {
             name: "Tarta de verduras (1 porción)",
             brand: "Veggie Express",
-            href: "",
+            href: "https://cdn0.uncomo.com/es/posts/5/8/8/como_hacer_tarta_de_verdura_36885_paso_10_600.jpg",
             calories: 240,
             total_fat: 9,
             saturated: 2,
@@ -522,7 +522,7 @@ async function seedFoods() {
         {
             name: "Smoothie de frutas (250 ml)",
             brand: "Green Shake",
-            href: "",
+            href: "https://e00-xlk-cooking-elmundo.uecdn.es/files/article_main_microformat_4_3/uploads/2023/02/28/63fe6ec911620.jpeg",
             calories: 160,
             total_fat: 2,
             saturated: 1,
@@ -546,7 +546,7 @@ async function seedFoods() {
         {
             name: "Arroz con atún (250 g)",
             brand: "Casero",
-            href: "",
+            href: "https://imag.bonviveur.com/emplatado-final-del-arroz-con-atun-en-conserva.jpg",
             calories: 430,
             total_fat: 14,
             saturated: 3,
@@ -570,7 +570,7 @@ async function seedFoods() {
         {
             name: "Milanesa con puré (1 porción)",
             brand: "Cocina Criolla",
-            href: "",
+            href: "https://img-global.cpcdn.com/steps/36776663fe281927/400x400cq90/photo.jpg",
             calories: 520,
             total_fat: 25,
             saturated: 7,
@@ -594,7 +594,7 @@ async function seedFoods() {
         {
             name: "Fideos con salsa boloñesa (1 plato)",
             brand: "Pasta d'Oro",
-            href: "",
+            href: "https://www.laespanolaaceites.com/wp-content/uploads/2019/05/espaguetis-a-la-bolonesa.jpg",
             calories: 610,
             total_fat: 20,
             saturated: 6,
@@ -618,7 +618,7 @@ async function seedFoods() {
         {
             name: "Paella de mariscos (1 plato)",
             brand: "Sabores del Mar",
-            href: "",
+            href: "https://alicante.com.ar/wp-content/uploads/2022/06/26_receta-1200x900.jpg",
             calories: 490,
             total_fat: 15,
             saturated: 3,
@@ -642,7 +642,7 @@ async function seedFoods() {
         {
             name: "Wok de vegetales con tofu (1 porción)",
             brand: "Vegano Power",
-            href: "",
+            href: "https://www.hola.com/horizon/landscape/9b257b9352c8-wok-tofu-age-t.jpg",
             calories: 400,
             total_fat: 12,
             saturated: 2,
@@ -666,7 +666,7 @@ async function seedFoods() {
         {
             name: "Bife con ensalada (1 porción)",
             brand: "Granja Grill",
-            href: "",
+            href: "https://www.cucinare.tv/wp-content/uploads/2019/09/Bife-con-ensalada.jpg",
             calories: 480,
             total_fat: 22,
             saturated: 8,
