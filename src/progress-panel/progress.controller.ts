@@ -13,6 +13,7 @@ import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { NutrientGoalsService } from './../nutrient-goals/nutrient-goals.service';
 import { ConsumedService } from './../consumed/consumed.service';
+import { ExerciseService } from './../exercise/exercise.service';
 import { BadRequestException } from '@nestjs/common';
 import { GetUserId } from '../util/utils';
 
@@ -20,7 +21,8 @@ import { GetUserId } from '../util/utils';
 @Controller('progress-panel')
 export class PorgressPanelController {
   constructor(private readonly nutrientGoalsService: NutrientGoalsService,
-    private readonly consumedService: ConsumedService) { }
+    private readonly consumedService: ConsumedService,
+    private readonly exerciseService: ExerciseService) { }
 
   @Get()
   @UseGuards(JwtAuthGuard)
@@ -70,8 +72,11 @@ export class PorgressPanelController {
     // Format the consumed data to send to the client
     const nutrientGoals = nutrientGoalsArr[0] || {};
     const nutritionGoals = nutritionGoalsArr[0] || {};
-    
-
+    const exercises = await this.exerciseService.getExercisesFromDay(userId, targetDate);
+    let caloriasBurned = 0;
+    exercises.forEach((exercise) => {
+      caloriasBurned += exercise.calories_burned || 0;
+    });
     if (!consumed || !nutrientGoals || !nutritionGoals) {
       throw new BadRequestException('No data found');
     }
@@ -80,6 +85,7 @@ export class PorgressPanelController {
     return {
       consumed,
       goals,
+      caloriesLost: caloriasBurned || 0,
     };
   }
 }
