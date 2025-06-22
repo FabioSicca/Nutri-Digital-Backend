@@ -57,7 +57,7 @@ export class UserService {
 			calories_burned_goal: 0
 		};
 
-		if (userDto.role.toLowerCase() === 'professional') {
+		if (userDto.role.toLowerCase() === 'medic') {
 			await this.professionalService.createProfessional(newUser.id, `${userDto.name} ${userDto.lastname}`,userDto.specialty ?? "Nutricionista");
 		}
 

@@ -1,6 +1,6 @@
 import { pgTable, real, integer, serial, date } from 'drizzle-orm/pg-core';
 import { InferSelectModel } from 'drizzle-orm';
-import usersTable from '@/user/user.entity';
+import usersTable from '../user/user.entity';
 import exerciseTypesTable from './exercise.entity';
 
 // Stores the exercises done by the user

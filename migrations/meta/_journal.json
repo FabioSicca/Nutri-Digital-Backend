@@ -92,6 +92,13 @@
       "when": 1749858964118,
       "tag": "0012_violet_imperial_guard",
       "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1750469985230,
+      "tag": "0013_volatile_golden_guardian",
+      "breakpoints": true
     }
   ]
 }

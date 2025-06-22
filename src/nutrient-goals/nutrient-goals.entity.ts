@@ -1,5 +1,5 @@
-import { pgTable, serial, real, date, integer } from 'drizzle-orm/pg-core';
-import usersTable from '@/user/user.entity';
+import { pgTable, serial, real, integer } from 'drizzle-orm/pg-core';
+import usersTable from '../user/user.entity';
 import { InferSelectModel } from 'drizzle-orm';
 
 export const micronutrientGoalsTable = pgTable('micronutrient_goals', {

@@ -1,5 +1,5 @@
-import { pgTable, real, integer, date } from 'drizzle-orm/pg-core';
-import usersTable from '@/user/user.entity';
+import { pgTable, real, integer } from 'drizzle-orm/pg-core';
+import usersTable from '../user/user.entity';
 import { InferSelectModel } from 'drizzle-orm';
 
 export const exerciseGoalsTable = pgTable('exercise_goals', {

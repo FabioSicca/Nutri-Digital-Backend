@@ -1,14 +1,12 @@
-import foodTable from '@/food/food.entity';
-import usersTable from '@/user/user.entity';
+import foodTable from '../food/food.entity';
+import usersTable from '../user/user.entity';
 import { InferSelectModel } from 'drizzle-orm';
 import {
 	pgTable,
 	varchar,
 	serial,
-	timestamp,
 	integer,
 	bigint,
-	foreignKey,
 	date,
 } from 'drizzle-orm/pg-core';
 

@@ -1,7 +1,7 @@
 import { drizzle } from 'drizzle-orm/node-postgres';
-import { usersTable } from '../src/user/user.entity';
 import { Pool } from 'pg';
 import 'dotenv/config';
+import professionalTable from '../src/professional/professional.entity';
 
 
 const pool = new Pool({
@@ -11,26 +11,25 @@ const pool = new Pool({
 const db = drizzle(pool);
 
 async function seed() {
-  console.log('🌱 Seeding database...');
-
-  await db.insert(usersTable).values([
+  await db.insert(professionalTable).values([
     {
-      user: 'admin',
-      name: 'Santiago',
-      lastname: 'Scooby',
-      password: '1234',
-      role: 'regular',
+      id: 1,
+      name: 'Ezequiel Diaz',
+      specialty: 'Nutricionista',
     },
     {
-      user: 'medic',
-      name: 'Ezequiel',
-      lastname: 'Bilardo',
-      password: '1234',
-      role: 'medic',
+      id: 2,
+      name: 'Franz Perez',
+      specialty: 'Nutricionista',
+    },
+    {
+      id: 3,
+      name: 'Alex Gonzalez',
+      specialty: 'Nutricionista',
     }
   ]);
 
-  console.log('✅ Users inserted successfully.');
+  console.log('✅ Professional inserted successfully.');
   await pool.end();
 }
 
