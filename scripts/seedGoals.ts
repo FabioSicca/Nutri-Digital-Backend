@@ -34,10 +34,10 @@ async function seed() {
         potassium: 4700,             // miligramos
         fiber: 28,                   // gramos
         sugar: 36,                   // gramos (máximo sugerido, depende de sexo)
-        vitamin_a: 900,              // microgramos (RAE)
-        vitamin_c: 90,               // miligramos
-        calcium: 1000,               // miligramos
-        iron: 18                    // miligramos (mujeres), 8 (hombres)
+        vitamin_a: 100,              // microgramos (RAE)
+        vitamin_c: 100,               // miligramos
+        calcium: 100,               // miligramos
+        iron: 100                    // miligramos (mujeres), 8 (hombres)
       }
     ]);
 
