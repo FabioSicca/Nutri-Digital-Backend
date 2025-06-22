@@ -9,9 +9,9 @@ const pool = new Pool({
 const db = drizzle(pool);
 
 async function seedHidratation() {
-  await db.execute(
-    `ALTER SEQUENCE hidratate_id_seq RESTART WITH 1;`
-  );
+  //await db.execute(
+  //  `ALTER SEQUENCE hidratate_id_seq RESTART WITH 1;`
+  //);
 
   await db.insert(hidratationTable).values([
   { id_user: 4, mililiters: 1000, date_consumed: new Date("2025-06-01") },

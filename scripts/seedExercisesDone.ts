@@ -9,9 +9,9 @@ const pool = new Pool({
 const db = drizzle(pool);
 
 async function seedExercisesDone() {
-  await db.execute(
-    `ALTER SEQUENCE exercise_done_id_seq RESTART WITH 1;`
-  );
+  //await db.execute(
+    //    `ALTER SEQUENCE exercise_done_id_seq RESTART WITH 1;`
+    //);
 
   await db.insert(exerciseDoneTable).values([
     {
