@@ -20,31 +20,31 @@ async function seed() {
       name: "Naturaleza Sabia",
       direction: "Bolívar 1155, C1066 CABA",
       category: "Dietética",
-      href: "https://maps.app.goo.gl/QjeFfKQHd6eqwExg9"
+      href: "https://maps.app.goo.gl/Hfs4YoxSpvKVP4rBA"
     },
     {
       name: "Mercado de San Telmo",
       direction: "Bolívar 970, C1066 CABA",
       category: "Mercado / Verdulería",
-      href: "https://maps.app.goo.gl/HVG2NdyUXVW5JNaZ7"
+      href: "https://maps.app.goo.gl/HpaNdox22oEzjAEa8"
     },
     {
       name: "Café Rivas",
       direction: "Estados Unidos 302, C1101 CABA",
       category: "Restaurante",
-      href: "https://maps.app.goo.gl/4EY5kfjMpStqzi4w6"
+      href: "https://maps.app.goo.gl/PqeP6WpCrGYtaV2w9"
     },
     {
       name: "Verdulería La Estrella",
       direction: "Chacabuco 960, C1069 CABA",
       category: "Verdulería",
-      href: "https://maps.app.goo.gl/Xnkk1vMSPtghmRPv7"
+      href: "https://maps.app.goo.gl/S5UnYpHcGfYZJRmb9"
     },
     {
       name: "Bio Mercado Natural",
       direction: "Carlos Calvo 738, C1102 CABA",
       category: "Mercado natural",
-      href: "https://maps.app.goo.gl/VVqgiF8FwzduJwW19"
+      href: "https://maps.app.goo.gl/pArRe3sinprHLXFt5"
     }
   ]);
 
