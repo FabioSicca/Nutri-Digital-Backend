@@ -10,9 +10,9 @@ const db = drizzle(pool);
 
 async function seedFoods() {
 
-    await db.execute(
-        `ALTER SEQUENCE food_id_seq RESTART WITH 1;`
-    );
+    //await db.execute(
+    //    `ALTER SEQUENCE food_id_seq RESTART WITH 1;`
+    //);
 
     await db.insert(foodTable).values([
         {

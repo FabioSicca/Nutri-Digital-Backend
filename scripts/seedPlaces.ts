@@ -11,9 +11,9 @@ const pool = new Pool({
 const db = drizzle(pool);
 
 async function seed() {
-  await db.execute(
-    `ALTER SEQUENCE place_id_seq RESTART WITH 1;`
-  );
+  //await db.execute(
+  //  `ALTER SEQUENCE place_id_seq RESTART WITH 1;`
+  //);
 
   await db.insert(placeTable).values([
     {

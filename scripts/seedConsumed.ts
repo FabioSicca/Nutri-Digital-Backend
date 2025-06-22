@@ -9,9 +9,10 @@ const pool = new Pool({
 const db = drizzle(pool);
 
 async function seedConsumed() {
-  await db.execute(
-    `ALTER SEQUENCE consumed_id_seq RESTART WITH 1;`
-  );
+  //await db.execute(
+  //  `ALTER SEQUENCE consumed_id_seq RESTART WITH 1;`
+  //);
+  
 
   await db.insert(consumedTable).values([
     {

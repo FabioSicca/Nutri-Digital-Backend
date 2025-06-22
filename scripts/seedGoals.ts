@@ -14,12 +14,12 @@ const db = drizzle(pool);
 
 async function seed() {
 
-  await db.execute(
-    `ALTER SEQUENCE micronutrient_goals_id_seq RESTART WITH 1;`
-  );
-  await db.execute(
-    `ALTER SEQUENCE nutrition_goals_id_seq RESTART WITH 1;`
-  );
+  //await db.execute(
+  //  `ALTER SEQUENCE micronutrient_goals_id_seq RESTART WITH 1;`
+  //);
+  //await db.execute(
+  //  `ALTER SEQUENCE nutrition_goals_id_seq RESTART WITH 1;`
+  //);
 
   for (let i = 1; i <= 6; i++) {
     await db.insert(micronutrientGoalsTable).values([
