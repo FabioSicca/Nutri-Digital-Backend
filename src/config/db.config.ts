@@ -1,20 +1,17 @@
 import { drizzle } from 'drizzle-orm/node-postgres';
+import { Pool } from 'pg';
 
-import { Client } from 'pg';
-
-const client = new Client({
-	user: process.env.DB_USER || 'postgres',
-	host: process.env.DB_HOST || 'localhost',
-	database: process.env.DB_DATABASE || 'nutridigitaldb',
-	password: process.env.DB_PASSWORD || '123456',
-	port: 5432,
-	ssl: process.env.DB_SSL == "true" ? true : false,
+const pool = new Pool({
+  user: process.env.DB_USER || 'postgres',
+  host: process.env.DB_HOST || 'localhost',
+  database: process.env.DB_DATABASE || 'nutridigitaldb',
+  password: process.env.DB_PASSWORD || '123456',
+  port: 5432,
+  ssl: process.env.DB_SSL == "true" ? true : false,
+  // Puedes ajustar el número de conexiones máximas:
+  max: 5,
 });
 
-if (process.env.NODE_ENV !== 'test') {
-	client.connect();
-}
-
-const db = drizzle(client);
+const db = drizzle(pool);
 
 export default db;
